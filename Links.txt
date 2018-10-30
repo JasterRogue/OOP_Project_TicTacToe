@@ -1,0 +1,3 @@
+Here are links to websites which I took code from:
+Set Icon on Jrame:
+https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
