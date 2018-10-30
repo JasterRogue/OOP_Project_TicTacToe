@@ -48,6 +48,7 @@ public class MainMenuGUI extends JFrame {
 
         twoPlayerButton.addActionListener(buttonHandler);
         onePlayerButton.addActionListener(buttonHandler);
+        typeOfGame = "";
 
         mainMenu.setVisible(true);
 
@@ -64,6 +65,8 @@ public class MainMenuGUI extends JFrame {
 
                 //Sets the varaible based on what option is selected
                 typeOfGame = "two";
+                setTypeOfGame(typeOfGame);
+                System.exit(0);
             }
 
             if(e.getSource() == onePlayerButton)
@@ -73,14 +76,22 @@ public class MainMenuGUI extends JFrame {
 
                 //Sets the varaible based on what option is selected
                 typeOfGame = "one";
+                setTypeOfGame(typeOfGame);
+                System.exit(0);
             }
         }
 
     }
 
+   /* public MainMenuGUI(String typeOfGame)
+    {
+        this.typeOfGame = typeOfGame;
+
+    }*/
+
     public void setTypeOfGame(String typeOfGame)
     {
-        setTypeOfGame(typeOfGame);
+        this.typeOfGame = typeOfGame;
     }
 
     public String getTypeOfGame()
