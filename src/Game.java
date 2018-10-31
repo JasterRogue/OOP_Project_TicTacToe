@@ -8,67 +8,85 @@ public class Game {
 
     static String printText;
 
+
+
     public static void main(String[] args)
     {
         MainMenuGUI mainMenu = new MainMenuGUI();
-        Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
-        boolean isGameFinished=false;
-         // This variable will be set to x or o depending on whose turn it is
-       // GameBoardGUI boardGUI = new GameBoardGUI();
+        Boolean tileTaken[] = new Boolean[]{false, false, false, false, false, false, false, false, false};
+        boolean isGameFinished = false;
+        //GameBoardGUI boardGUI = new GameBoardGUI()
 
+        if (mainMenu.getOptionSelected() == true) {
 
-
-        if(mainMenu.getTypeOfGame().equals("two"))
-        {
             GameBoardGUI boardGUI = new GameBoardGUI();
+            System.out.print(mainMenu.getTypeOfGame());
 
-            while(!isGameFinished)
+            if (mainMenu.getTypeOfGame().equals("two"))
             {
-                playerOneTurn(printText);
 
-                playerTwoTurn(printText);
+                while (!isGameFinished) {
+                    playerOneTurn();
+
+                    playerTwoTurn();
+
+                }
+
+            }
+
+
+            if (mainMenu.getTypeOfGame().equals("one"))
+            {
+
+                while (!isGameFinished) {
+
+                    playerOneTurn();
+
+                    cpuTurn();
+
+                }
 
             }
 
         }
 
-        if(mainMenu.getTypeOfGame().equals("one"))
-       {
-          GameBoardGUI boardGUI = new GameBoardGUI();
+    }
 
-          while(!isGameFinished)
-          {
 
-              playerOneTurn(printText);
+    public static void playerOneTurn ()
+    {
+        printText = "X";
 
-              cpuTurn(printText);
+        JOptionPane.showMessageDialog(null, "Player One Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
 
-          }
+    }
+
+    public static void playerTwoTurn ()
+    {
+        printText = "O";
+
+        JOptionPane.showMessageDialog(null, "Player Two Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void cpuTurn ()
+    {
+        printText = "O";
+        JOptionPane.showMessageDialog(null, "CPU Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
+
+//        for(int i =0; i < tileTaken.length;i++)
+//        {
+//            if(tileTaken[i] == false)
+//            {
+//                break;
+//            }
+
+
+            //add code to set tile
+
+
 
         }
 
     }
 
-    public static void playerOneTurn(String printText)
-    {
-        printText = "X";
 
-        JOptionPane.showMessageDialog(null,"Player One Turn","Turn",JOptionPane.INFORMATION_MESSAGE);
-
-    }
-
-    public static void playerTwoTurn(String printText)
-    {
-        printText = "O";
-
-        JOptionPane.showMessageDialog(null,"Player Two Turn","Turn",JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public static void cpuTurn(String printText)
-    {
-        printText = "O";
-
-        JOptionPane.showMessageDialog(null,"CPU Turn","Turn",JOptionPane.INFORMATION_MESSAGE);
-    }
-
-}

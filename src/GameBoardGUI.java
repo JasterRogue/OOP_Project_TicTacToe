@@ -13,7 +13,7 @@ public class GameBoardGUI extends JFrame{
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
     //Each board tile is an individual button
-   JButton tile0 = new JButton();
+    JButton tile0 = new JButton();
     JButton tile1 = new JButton();
     JButton tile2 = new JButton();
     JButton tile3 = new JButton();
@@ -101,7 +101,7 @@ public class GameBoardGUI extends JFrame{
         ticTacToeBoard.setVisible(true);
     }
 
-    private class EventHandler implements ActionListener
+    public class EventHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {

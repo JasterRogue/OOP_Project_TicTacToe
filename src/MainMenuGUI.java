@@ -15,6 +15,7 @@ public class MainMenuGUI extends JFrame {
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
     private String typeOfGame;
+    private boolean optionSelected=false;
 
     //Creating the menu gui
     public MainMenuGUI()
@@ -48,7 +49,7 @@ public class MainMenuGUI extends JFrame {
 
         twoPlayerButton.addActionListener(buttonHandler);
         onePlayerButton.addActionListener(buttonHandler);
-        typeOfGame = "";
+
 
         mainMenu.setVisible(true);
 
@@ -65,7 +66,8 @@ public class MainMenuGUI extends JFrame {
 
                 //Sets the varaible based on what option is selected
                 typeOfGame = "two";
-                setTypeOfGame(typeOfGame);
+                optionSelected = true;
+                setTypeOfGame("two");
                 System.exit(0);
             }
 
@@ -75,8 +77,10 @@ public class MainMenuGUI extends JFrame {
                 //JOptionPane.showMessageDialog(null,"Pressed one player button");
 
                 //Sets the varaible based on what option is selected
-                typeOfGame = "one";
-                setTypeOfGame(typeOfGame);
+                //typeOfGame = "one";
+                setTypeOfGame("one");
+                optionSelected = true;
+                System.out.print(getTypeOfGame());
                 System.exit(0);
             }
         }
@@ -97,6 +101,11 @@ public class MainMenuGUI extends JFrame {
     public String getTypeOfGame()
     {
         return typeOfGame;
+    }
+
+    public boolean getOptionSelected()
+    {
+        return optionSelected;
     }
 
 }
