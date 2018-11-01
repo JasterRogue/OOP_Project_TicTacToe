@@ -2,10 +2,10 @@
 /*This class will be used for playing the game calling other classes and mathods.
 * While also using some of its own methods*/
 
-import sun.audio.AudioData;
+//import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
+//import sun.audio.ContinuousAudioDataStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
