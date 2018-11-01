@@ -1,3 +1,7 @@
 Here are links to websites which I took code from:
 Set Icon on Jrame:
 https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
+Got Music from this site:
+https://www.bensound.com/royalty-free-music
+Play music:
+https://www.youtube.com/watch?v=3q4f6I5zi2w
