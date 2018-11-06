@@ -22,15 +22,17 @@ public class Game {
         MainMenuGUI mainMenu = new MainMenuGUI();
         Boolean tileTaken[] = new Boolean[]{false, false, false, false, false, false, false, false, false};
         boolean isGameFinished = false;
-        GameBoardGUI boardGUI = new GameBoardGUI();
+        //GameBoardGUI boardGUI = new GameBoardGUI();
         playMusic(url);
 
 
+        //mainMenu.getOptionSelected() == true
+        if (mainMenu.getOptionSelected() == true)
+        {
 
-        if (mainMenu.getOptionSelected() == true) {
-
-            //GameBoardGUI boardGUI = new GameBoardGUI();
-            System.out.print(mainMenu.getTypeOfGame());
+            GameBoardGUI boardGUI = new GameBoardGUI();
+           // boardGUI.setVisible(true);
+            System.out.print("\nType of game" + mainMenu.getTypeOfGame());
 
             if (mainMenu.getTypeOfGame().equals("two"))
             {
@@ -58,9 +60,9 @@ public class Game {
 
             }
 
-        }
+        }//end of if(mainMenu.getOptionSelected() == true)
 
-    }
+    }//end of main
 
 
     public static void playerOneTurn ()
@@ -97,28 +99,29 @@ public class Game {
 
     }
 
-    public static void playMusic(String url)
-    {
-        InputStream music;
-        try
-        {
-            //Plays music once
-            music = new FileInputStream(new File(url));
-            AudioStream audios = new AudioStream(music);
-            AudioPlayer.player.start(audios);
+        public static void playMusic(String url)
+         {
+            InputStream music;
+            try
+            {
+                //Plays music once
+                music = new FileInputStream(new File(url));
+                AudioStream audios = new AudioStream(music);
+                AudioPlayer.player.start(audios);
 
-            //Loops the music(doesn't work)
-            /*AudioData data = new AudioStream(new FileInputStream(filepath)).getData();
-            ContinuousAudioDataStream sound = new ContinuousAudioDataStream(data);
-            AudioPlayer.player.start(sound);*/
+                //Loops the music(doesn't work)
+                /*AudioData data = new AudioStream(new FileInputStream(filepath)).getData();
+                ContinuousAudioDataStream sound = new ContinuousAudioDataStream(data);
+                AudioPlayer.player.start(sound);*/
 
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,"Error");
-        }
-    }
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"Error. Music cannot play");
+            }
+         }//end of playMusic methodd
 
-    }
+
+    }//end of game
 
 

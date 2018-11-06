@@ -53,7 +53,7 @@ public class MainMenuGUI extends JFrame {
 
         mainMenu.setVisible(true);
 
-    }
+    }//end of MainMenuGUI constructor
 
     private class ButtonEventHandler implements ActionListener
     {
@@ -82,10 +82,11 @@ public class MainMenuGUI extends JFrame {
                 optionSelected = true;
                 System.out.print(getTypeOfGame());
                 System.exit(0);
-            }
-        }
 
-    }
+            }
+        } // end of actionPerformed
+
+    }//End of ButtonEventHandler class
 
    /* public MainMenuGUI(String typeOfGame)
     {
@@ -106,6 +107,16 @@ public class MainMenuGUI extends JFrame {
     public boolean getOptionSelected()
     {
         return optionSelected;
+    }
+
+    public JButton getOnePlayerButton()
+    {
+        return onePlayerButton;
+    }
+
+    public JButton getTwoPlayerButton()
+    {
+        return twoPlayerButton;
     }
 
 }

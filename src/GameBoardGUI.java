@@ -75,7 +75,7 @@ public class GameBoardGUI extends JFrame{
         ticTacToeBoard.add(tile7);
         ticTacToeBoard.add(tile8);
 
-      tile0.setFont(buttonFont);
+        tile0.setFont(buttonFont);
         tile1.setFont(buttonFont);
         tile2.setFont(buttonFont);
         tile3.setFont(buttonFont);
@@ -85,8 +85,7 @@ public class GameBoardGUI extends JFrame{
         tile7.setFont(buttonFont);
         tile8.setFont(buttonFont);
 
-
-       EventHandler handler = new EventHandler();
+        EventHandler handler = new EventHandler();
 
         tile0.addActionListener(handler);
         tile1.addActionListener(handler);
@@ -99,14 +98,15 @@ public class GameBoardGUI extends JFrame{
         tile8.addActionListener(handler);
 
         ticTacToeBoard.setVisible(true);
-    }
+    } // end of GameBoardGUI constructor
 
    private class EventHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
             int tileNum;
-            String printText="X";
+           // String printText= Game.printText;
+            String printText = "O";
 
             if(e.getSource()==tile0)
             {
@@ -265,12 +265,7 @@ public class GameBoardGUI extends JFrame{
 
             }
 
-        }
-    }
-
-    public static void main(String[] args)
-    {
-
-
-    }
+        } // end of actionPerformed
+    }//end of EventHandler class
+    
 }
