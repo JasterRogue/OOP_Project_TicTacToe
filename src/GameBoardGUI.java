@@ -111,8 +111,8 @@ public class GameBoardGUI extends JFrame{
             if(e.getSource()==tile0)
             {
                 tileNum = 0;
-                System.out.print("\nTile Number: " + tileNum );
-                System.out.print("\nTile Status: " + tileTaken[tileNum]);
+              //  System.out.print("\nTile Number: " + tileNum );
+               // System.out.print("\nTile Status: " + tileTaken[tileNum]);
 
                 if(tileTaken[tileNum] == false)
                 {
@@ -267,5 +267,5 @@ public class GameBoardGUI extends JFrame{
 
         } // end of actionPerformed
     }//end of EventHandler class
-    
+
 }

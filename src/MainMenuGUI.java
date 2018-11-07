@@ -11,11 +11,12 @@ public class MainMenuGUI extends JFrame {
     JFrame mainMenu = new JFrame();
     JButton twoPlayerButton = new JButton();
     JButton onePlayerButton = new JButton();
+    JButton quitButton = new JButton();
     JLabel welcomeMessage = new JLabel();
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
-    private String typeOfGame;
-    private boolean optionSelected=false;
+    private static String typeOfGame;
+    private static boolean optionSelected=false;
 
     //Creating the menu gui
     public MainMenuGUI()
@@ -23,32 +24,39 @@ public class MainMenuGUI extends JFrame {
         //Menu JFrame setup
         mainMenu.setLayout(null);
         mainMenu.setSize(500,500);
-        mainMenu.setLocation(350,50);
+        mainMenu.setLocation(550,50);
         mainMenu.setIconImage(ticTacToeIcon.getImage());
         mainMenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainMenu.setTitle("Tic Tac Toe");
         mainMenu.getContentPane().setBackground(Color.LIGHT_GRAY);
 
-       /* welcomeMessage.setText("Welcome to Tic Tac Toe. Please select an option");
-        welcomeMessage.setLocation(350,100);
+        /*welcomeMessage.setText("Welcome to Tic Tac Toe. Please select an option");
+        welcomeMessage.setLocation(100,0);
+        welcomeMessage.setSize(300,300);
         mainMenu.add(welcomeMessage);*/
 
         //two player button setup
         twoPlayerButton.setText("Two Player");
         twoPlayerButton.setSize(100,70);
-        twoPlayerButton.setLocation(180,90);
+        twoPlayerButton.setLocation(180,60);
         mainMenu.add(twoPlayerButton);
 
         //one player button setup
         onePlayerButton.setText("One Player");
         onePlayerButton.setSize(100,70);
-        onePlayerButton.setLocation(180,280);
+        onePlayerButton.setLocation(180,190);
         mainMenu.add(onePlayerButton);
+
+        quitButton.setText("Quit");
+        quitButton.setSize(100,70);
+        quitButton.setLocation(180,320);
+        mainMenu.add(quitButton);
 
         ButtonEventHandler buttonHandler = new ButtonEventHandler();
 
         twoPlayerButton.addActionListener(buttonHandler);
         onePlayerButton.addActionListener(buttonHandler);
+        quitButton.addActionListener(buttonHandler);
 
 
         mainMenu.setVisible(true);
@@ -65,10 +73,14 @@ public class MainMenuGUI extends JFrame {
                 //JOptionPane.showMessageDialog(null,"Pressed two player button");
 
                 //Sets the varaible based on what option is selected
-                typeOfGame = "two";
+               // typeOfGame = "two";
                 optionSelected = true;
                 setTypeOfGame("two");
-                System.exit(0);
+                //System.exit(0);
+                mainMenu.setVisible(false);
+                String args[] = {"",""};
+                Game.main(args);
+                //Game.x(this);
             }
 
             if(e.getSource() == onePlayerButton)
@@ -80,9 +92,17 @@ public class MainMenuGUI extends JFrame {
                 //typeOfGame = "one";
                 setTypeOfGame("one");
                 optionSelected = true;
-                System.out.print(getTypeOfGame());
-                System.exit(0);
+                //System.exit(0);
+                mainMenu.setVisible(false);
+                String args[] = {"",""};
+                Game.main(args);
 
+            }
+
+            if(e.getSource()== quitButton)
+            {
+                JOptionPane.showMessageDialog(null,"Thanks for playing","Close Application",JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
             }
         } // end of actionPerformed
 
@@ -99,12 +119,12 @@ public class MainMenuGUI extends JFrame {
         this.typeOfGame = typeOfGame;
     }
 
-    public String getTypeOfGame()
+    public static String getTypeOfGame()
     {
         return typeOfGame;
     }
 
-    public boolean getOptionSelected()
+    public static boolean getOptionSelected()
     {
         return optionSelected;
     }
