@@ -115,14 +115,11 @@ public class GameBoardGUI extends JFrame{
         public void actionPerformed(ActionEvent e)
         {
             int tileNum;
-           // String printText= Game.printText;
             String printText = "O";
 
             if(e.getSource()==tile0)
             {
                 tileNum = 0;
-              //  System.out.print("\nTile Number: " + tileNum );
-               // System.out.print("\nTile Status: " + tileTaken[tileNum]);
 
                 if(tileTaken[tileNum] == false)
                 {
@@ -287,6 +284,7 @@ public class GameBoardGUI extends JFrame{
         if (MainMenuGUI.getTypeOfGame().equals("two"))
         {
             System.out.print("\nIm here");
+
             while (!isGameFinished)
             {
                 playerOneTurn();
@@ -325,8 +323,6 @@ public class GameBoardGUI extends JFrame{
         printText = "X";
         playerTurn.setText("Player One Turn");
 
-        //JOptionPane.showMessageDialog(null, "Player One Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
-
     }//end of playerOneTurn
 
     /**Sets the printText varaible to o so if a button is clicked it applies the right mark */
@@ -334,8 +330,6 @@ public class GameBoardGUI extends JFrame{
     {
         printText = "O";
         playerTurn.setText("Player Two Turn");
-
-        //JOptionPane.showMessageDialog(null, "Player Two Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
     }//end of playerTwoTurn
 
     /**The cpu loops through the tile array checking for the first available tile and selects it */
@@ -343,7 +337,7 @@ public class GameBoardGUI extends JFrame{
     {
         printText = "O";
         int i;
-        JOptionPane.showMessageDialog(null, "CPU Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
+        
         for( i =0; i < tileTaken.length;i++) {
             if (tileTaken[i] == false) {
                 break;
@@ -400,6 +394,7 @@ public class GameBoardGUI extends JFrame{
 
     public static void checkForWinner()
     {
+        //add code to check for winning combinations
 
     }
 

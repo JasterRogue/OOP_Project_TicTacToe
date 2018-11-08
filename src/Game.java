@@ -15,26 +15,20 @@ public class Game {
 
     static String printText;
     static int count = 0;
-    static boolean playerOneTurnTaken=false;
-    static boolean playerTwoTurnTaken=false;
 
     public static void main(String[] args)
     {
         count++;
         MainMenuGUI mainMenu;
-        String url="bensound-summer.wav";
+        String file="bensound-summer.wav";
         System.out.print("\nIn main of Game.java");
        if(count==1)
              mainMenu = new MainMenuGUI();
-       // Boolean tileTaken[] = new Boolean[]{false, false, false, false, false, false, false, false, false};
-     //   boolean isGameFinished = false;
-        //GameBoardGUI boardGUI = new GameBoardGUI();
-        playMusic(url);
+        playMusic(file);
 
 
         if (MainMenuGUI.getOptionSelected() == true)
         {
-
            GameBoardGUI boardGUI = new GameBoardGUI();
            System.out.print("\nIn MainMenuGUI.getOptionSelected = true");
 
@@ -44,13 +38,13 @@ public class Game {
 
 
 
-        public static void playMusic(String url)
+        public static void playMusic(String file)
          {
             InputStream music;
             try
             {
                 //Plays music once
-                music = new FileInputStream(new File(url));
+                music = new FileInputStream(new File(file));
                 AudioStream audios = new AudioStream(music);
                 AudioPlayer.player.start(audios);
 

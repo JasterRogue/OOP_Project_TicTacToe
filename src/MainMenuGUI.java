@@ -13,7 +13,6 @@ public class MainMenuGUI extends JFrame {
     JButton onePlayerButton = new JButton();
     JButton statsButton = new JButton();
     JButton quitButton = new JButton();
-    JLabel welcomeMessage = new JLabel();
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
     private static String typeOfGame;
@@ -30,11 +29,6 @@ public class MainMenuGUI extends JFrame {
         mainMenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainMenu.setTitle("Tic Tac Toe");
         mainMenu.getContentPane().setBackground(Color.LIGHT_GRAY);
-
-        /*welcomeMessage.setText("Welcome to Tic Tac Toe. Please select an option");
-        welcomeMessage.setLocation(100,0);
-        welcomeMessage.setSize(300,300);
-        mainMenu.add(welcomeMessage);*/
 
         //two player button setup
         twoPlayerButton.setText("Two Player");
@@ -76,14 +70,10 @@ public class MainMenuGUI extends JFrame {
         {
             if(e.getSource() == twoPlayerButton)
             {
-                //This line is just for testing if the button works
-                //JOptionPane.showMessageDialog(null,"Pressed two player button");
-
                 //Sets the varaible based on what option is selected
                // typeOfGame = "two";
                 optionSelected = true;
                 setTypeOfGame("two");
-                //System.exit(0);
                 mainMenu.setVisible(false);
                 String args[] = {"",""};
                 Game.main(args);
@@ -92,19 +82,14 @@ public class MainMenuGUI extends JFrame {
 
             if(e.getSource() == onePlayerButton)
             {
-                //This line is just for testing if the button works
-                //JOptionPane.showMessageDialog(null,"Pressed one player button");
-
                 //Sets the varaible based on what option is selected
                 //typeOfGame = "one";
                 setTypeOfGame("one");
                 System.out.print("Type of game is: " + getTypeOfGame());
                 optionSelected = true;
-                //System.exit(0);
                 mainMenu.setVisible(false);
                 String args[] = {"",""};
                 Game.main(args);
-
             }
 
             if(e.getSource()== statsButton)
@@ -121,11 +106,6 @@ public class MainMenuGUI extends JFrame {
 
     }//End of ButtonEventHandler class
 
-   /* public MainMenuGUI(String typeOfGame)
-    {
-        this.typeOfGame = typeOfGame;
-
-    }*/
 
     public void setTypeOfGame(String typeOfGame)
     {
