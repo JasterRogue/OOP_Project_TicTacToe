@@ -13,23 +13,27 @@ public class GameBoardGUI extends JFrame{
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
     //Each board tile is an individual button
-    JButton tile0 = new JButton();
-    JButton tile1 = new JButton();
-    JButton tile2 = new JButton();
-    JButton tile3 = new JButton();
-    JButton tile4 = new JButton();
-    JButton tile5 = new JButton();
-    JButton tile6 = new JButton();
-    JButton tile7 = new JButton();
-    JButton tile8 = new JButton();
+    static JButton tile0 = new JButton();
+    static JButton tile1 = new JButton();
+    static JButton tile2 = new JButton();
+    static JButton tile3 = new JButton();
+    static JButton tile4 = new JButton();
+    static JButton tile5 = new JButton();
+    static JButton tile6 = new JButton();
+    static JButton tile7 = new JButton();
+    static JButton tile8 = new JButton();
 
-    Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
+    static JLabel playerTurn = new JLabel("Player turn");
+
+    static Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
+    static String printText;
 
+    /**Creates the Game board . Creates 9 buttons and sets there size, location and font*/
     public GameBoardGUI()
     {
         ticTacToeBoard.setTitle("Tic Tac Toe");
-        ticTacToeBoard.setSize(608,630);
+        ticTacToeBoard.setSize(608,650);
         ticTacToeBoard.setLocation(350,50);
         ticTacToeBoard.setIconImage(ticTacToeIcon.getImage());
         ticTacToeBoard.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -65,6 +69,9 @@ public class GameBoardGUI extends JFrame{
         tile8.setSize(200,200);
         tile8.setLocation(400,400);
 
+        playerTurn.setLocation(270,560);
+        playerTurn.setSize(100,100);
+
         ticTacToeBoard.add(tile0);
         ticTacToeBoard.add(tile1);
         ticTacToeBoard.add(tile2);
@@ -74,6 +81,8 @@ public class GameBoardGUI extends JFrame{
         ticTacToeBoard.add(tile6);
         ticTacToeBoard.add(tile7);
         ticTacToeBoard.add(tile8);
+
+        ticTacToeBoard.add(playerTurn);
 
         tile0.setFont(buttonFont);
         tile1.setFont(buttonFont);
@@ -100,6 +109,7 @@ public class GameBoardGUI extends JFrame{
         ticTacToeBoard.setVisible(true);
     } // end of GameBoardGUI constructor
 
+    /**Deals with button clicks during the game */
    private class EventHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -119,6 +129,7 @@ public class GameBoardGUI extends JFrame{
 
                     tileTaken[tileNum] = true;
                     tile0.setText(printText);
+
                 }
 
                 else
@@ -267,5 +278,136 @@ public class GameBoardGUI extends JFrame{
 
         } // end of actionPerformed
     }//end of EventHandler class
+
+    /**When this method is called it plays the game , turns will continue until isGameFinished evaulates to false */
+    public static void playGame()
+    {
+        boolean isGameFinished=false;
+
+        if (MainMenuGUI.getTypeOfGame().equals("two"))
+        {
+            System.out.print("\nIm here");
+            while (!isGameFinished)
+            {
+                playerOneTurn();
+
+                checkForWinner();
+
+                playerTwoTurn();
+
+                checkForWinner();
+
+            }
+
+        }
+
+
+        if (MainMenuGUI.getTypeOfGame().equals("one"))
+        {
+            while (!isGameFinished)
+            {
+                playerOneTurn();
+
+                checkForWinner();
+
+                cpuTurn();
+
+                checkForWinner();
+
+            }
+
+        }
+    }//end of play game
+
+    /**Sets the printText varaible to x so if a button is clicked it applies the right mark */
+    public static void playerOneTurn ()
+    {
+        printText = "X";
+        playerTurn.setText("Player One Turn");
+
+        //JOptionPane.showMessageDialog(null, "Player One Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
+
+    }//end of playerOneTurn
+
+    /**Sets the printText varaible to o so if a button is clicked it applies the right mark */
+    public static void playerTwoTurn ()
+    {
+        printText = "O";
+        playerTurn.setText("Player Two Turn");
+
+        //JOptionPane.showMessageDialog(null, "Player Two Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
+    }//end of playerTwoTurn
+
+    /**The cpu loops through the tile array checking for the first available tile and selects it */
+    public static void cpuTurn ()
+    {
+        printText = "O";
+        int i;
+        JOptionPane.showMessageDialog(null, "CPU Turn", "Turn", JOptionPane.INFORMATION_MESSAGE);
+        for( i =0; i < tileTaken.length;i++) {
+            if (tileTaken[i] == false) {
+                break;
+            }
+        }
+
+           if(i == 0)
+           {
+               tile0.setText(printText);
+           }
+
+           if(i == 1)
+           {
+               tile1.setText(printText);
+           }
+
+           if(i == 2)
+           {
+               tile2.setText(printText);
+           }
+
+           if(i == 3)
+           {
+               tile3.setText(printText);
+           }
+
+           if(i == 4)
+           {
+               tile4.setText(printText);
+           }
+
+           if(i == 5)
+           {
+               tile5.setText(printText);
+           }
+
+           if(i == 6)
+           {
+               tile6.setText(printText);
+           }
+
+           if(i == 7)
+           {
+               tile7.setText(printText);
+           }
+
+           if(i == 8)
+           {
+               tile8.setText(printText);
+           }
+
+
+    }//end of cpuTurn
+
+    public static void checkForWinner()
+    {
+
+    }
+
+    public static void main(String[] args)
+    {
+        System.out.print("In main of GameBoardGUI");
+        playGame();
+    }
+
 
 }
