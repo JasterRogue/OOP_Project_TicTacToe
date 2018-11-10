@@ -3,28 +3,29 @@
 * While also using some of its own methods*/
 
 //import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-//import sun.audio.ContinuousAudioDataStream;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.MediaPlayer;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import javax.swing.*;
-
+import javafx.scene.media.Media;
 public class Game {
 
     static String printText;
     static int count = 0;
+    static MediaPlayer mediaPlayer;
+    static String audioFile= "bensound-summer.wav";
+    //static String audioFile = "gunshot.wav"; was used for testing audio
 
     public static void main(String[] args)
     {
+        JFXPanel fxPanel = new JFXPanel();
         count++;
         MainMenuGUI mainMenu;
-        String file="bensound-summer.wav";
         System.out.print("\nIn main of Game.java");
        if(count==1)
              mainMenu = new MainMenuGUI();
-        playMusic(file);
+        playMusic(audioFile);
 
 
         if (MainMenuGUI.getOptionSelected() == true)
@@ -38,20 +39,23 @@ public class Game {
 
 
 
-        public static void playMusic(String file)
+        public static void playMusic(String path)
          {
-            InputStream music;
+            Media audioClip = new Media(new File(path).toURI().toString());
+
+            mediaPlayer = new MediaPlayer(audioClip);
+
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                public void run() {
+                    //Platform.exit();
+                }
+            });
+
             try
             {
-                //Plays music once
-                music = new FileInputStream(new File(file));
-                AudioStream audios = new AudioStream(music);
-                AudioPlayer.player.start(audios);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.play();
 
-                //Loops the music(doesn't work)
-                /*AudioData data = new AudioStream(new FileInputStream(filepath)).getData();
-                ContinuousAudioDataStream sound = new ContinuousAudioDataStream(data);
-                AudioPlayer.player.start(sound);*/
 
             }
             catch(Exception e)

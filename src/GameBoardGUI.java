@@ -337,7 +337,7 @@ public class GameBoardGUI extends JFrame{
     {
         printText = "O";
         int i;
-        
+
         for( i =0; i < tileTaken.length;i++) {
             if (tileTaken[i] == false) {
                 break;
