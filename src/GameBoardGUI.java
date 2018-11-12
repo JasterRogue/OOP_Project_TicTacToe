@@ -27,11 +27,14 @@ public class GameBoardGUI extends JFrame{
 
     static Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
+
     static String printText;
+    static boolean isGameFinished;
 
     /**Creates the Game board . Creates 9 buttons and sets there size, location and font*/
     public GameBoardGUI()
     {
+
         ticTacToeBoard.setTitle("Tic Tac Toe");
         ticTacToeBoard.setSize(608,650);
         ticTacToeBoard.setLocation(350,50);
@@ -347,46 +350,55 @@ public class GameBoardGUI extends JFrame{
            if(i == 0)
            {
                tile0.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 1)
            {
                tile1.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 2)
            {
                tile2.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 3)
            {
                tile3.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 4)
            {
                tile4.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 5)
            {
                tile5.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 6)
            {
                tile6.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 7)
            {
                tile7.setText(printText);
+               tileTaken[i] = true;
            }
 
            if(i == 8)
            {
                tile8.setText(printText);
+               tileTaken[i] = true;
            }
 
 
@@ -395,6 +407,108 @@ public class GameBoardGUI extends JFrame{
     public static void checkForWinner()
     {
         //add code to check for winning combinations
+
+        //Horizontal wins for X
+        if(tile0.getText().equals("X") && tile1.getText().equals("X") && tile2.getText().equals("X"))
+        {
+            isGameFinished = true;
+        }
+
+        if(tile3.getText().equals("X") && tile4.getText().equals("X") && tile5.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile6.getText().equals("X") && tile7.getText().equals("X") && tile8.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+        //vertical wins for x
+        if(tile0.getText().equals("X") && tile3.getText().equals("X") && tile6.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile1.getText().equals("X") && tile4.getText().equals("X") && tile7.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile2.getText().equals("X") && tile5.getText().equals("X") && tile8.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+        //diagonal wins for x
+        if(tile0.getText().equals("X") && tile4.getText().equals("X") && tile8.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
+        {
+            isGameFinished = true;
+
+        }
+
+
+        //Horizontal wins for O
+        if(tile0.getText().equals("O") && tile1.getText().equals("O") && tile2.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile3.getText().equals("O") && tile4.getText().equals("O") && tile5.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile6.getText().equals("O") && tile7.getText().equals("O") && tile8.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        //vertical wins for O
+        if(tile0.getText().equals("O") && tile3.getText().equals("O") && tile6.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile1.getText().equals("O") && tile4.getText().equals("O") && tile7.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile2.getText().equals("O") && tile5.getText().equals("O") && tile8.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        //diagonal wins for O
+        if(tile0.getText().equals("O") && tile4.getText().equals("O") && tile8.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
+
+        if(tile6.getText().equals("O") && tile4.getText().equals("O") && tile2.getText().equals("O"))
+        {
+            isGameFinished = true;
+
+        }
 
     }
 

@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4dc58391-ff42-460f-b3b9-69ff3d5a7278" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoardGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoardGUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,32 +19,34 @@
     <session id="-707709447">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="17" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.37" value="2" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="9554" />
+          <entry key="java" value="9830" />
           <entry key="txt" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9554" />
+          <entry key="JAVA" value="9830" />
           <entry key="PLAIN_TEXT" value="38" />
         </counts>
       </usages-collector>
@@ -66,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MainMenuGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
+            <state relative-caret-position="1717">
               <caret line="105" selection-start-line="105" selection-end-line="105" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -75,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-394">
-              <caret line="17" column="73" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
+            <state relative-caret-position="476">
+              <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameBoardGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="408" selection-start-line="408" selection-end-line="408" />
+            <state relative-caret-position="3383">
+              <caret line="510" column="9" lean-forward="true" selection-start-line="510" selection-start-column="9" selection-end-line="510" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,8 +116,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/MainMenuGUI.java" />
-        <option value="$PROJECT_DIR$/src/GameBoardGUI.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
+        <option value="$PROJECT_DIR$/src/GameBoardGUI.java" />
       </list>
     </option>
   </component>
@@ -147,8 +148,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541856337175" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/tictactoe-java-master/tictactoe-java-master" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541856441643" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -220,14 +221,16 @@
       <workItem from="1541683676471" duration="1805000" />
       <workItem from="1541686409114" duration="883000" />
       <workItem from="1541689783975" duration="2299000" />
+      <workItem from="1542028216593" duration="514000" />
+      <workItem from="1542029238301" duration="847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22380000" />
+    <option name="totallyTimeSpent" value="23741000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15204236" />
@@ -239,7 +242,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26393443" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26327193" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -274,19 +277,9 @@
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_172/src.zip!/java/awt/Component.java" />
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_172/src.zip!/java/awt/event/ActionListener.java" />
-    <entry file="file://$PROJECT_DIR$/src/GameBoardGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="408" selection-start-line="408" selection-end-line="408" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MainMenuGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
+        <state relative-caret-position="1717">
           <caret line="105" selection-start-line="105" selection-end-line="105" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -296,8 +289,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-394">
-          <caret line="17" column="73" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
+        <state relative-caret-position="476">
+          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBoardGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="510" column="9" lean-forward="true" selection-start-line="510" selection-start-column="9" selection-end-line="510" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
