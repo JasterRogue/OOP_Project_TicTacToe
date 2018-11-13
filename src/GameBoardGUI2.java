@@ -1,29 +1,26 @@
-//GameBoardGUI.java by Ryan Madigan
-/*This class is used to create the game board and all of its neccessary
-* components*/
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameBoardGUI{
+public class GameBoardGUI2 extends JFrame{
 
-    JFrame ticTacToeBoard;
+
     ImageIcon ticTacToeIcon;
 
     //Each board tile is an individual button
-     JButton tile0;
-     JButton tile1;
-     JButton tile2;
-     JButton tile3;
-     JButton tile4;
-     JButton tile5;
-     JButton tile6;
-     JButton tile7;
-     JButton tile8;
+    JButton tile0;
+    JButton tile1;
+    JButton tile2;
+    JButton tile3;
+    JButton tile4;
+    JButton tile5;
+    JButton tile6;
+    JButton tile7;
+    JButton tile8;
+    JButton jb6,jb7,jb8;
 
-     JLabel playerTurn;
+    JLabel playerTurn;
 
     static Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
@@ -32,35 +29,40 @@ public class GameBoardGUI{
     static boolean isGameFinished;
 
     /**Creates the Game board . Creates 9 buttons and sets there size, location and font*/
-    public GameBoardGUI()
+    public GameBoardGUI2()
     {
-        ticTacToeBoard = new JFrame();
+
         ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
-        ticTacToeBoard.setTitle("Tic Tac Toe");
-        ticTacToeBoard.setSize(608,650);
-        ticTacToeBoard.setLocation(350,50);
-        ticTacToeBoard.setIconImage(ticTacToeIcon.getImage());
-        ticTacToeBoard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       // ticTacToeBoard.getContentPane().setBackground(Color.LIGHT_GRAY);
-        ticTacToeBoard.setResizable(false);
-        ticTacToeBoard.setLayout(null);
+        setTitle("Tic Tac Toe");
+        setSize(608,650);
+        setLocation(350,50);
+        setIconImage(ticTacToeIcon.getImage());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // ticTacToeBoard.getContentPane().setBackground(Color.LIGHT_GRAY);
+       // setResizable(false);
+        setLayout(null);
 
-        Container pane = ticTacToeBoard.getContentPane();
+        Container pane = getContentPane();
         pane.setBackground(Color.LIGHT_GRAY);
 
         //sets the postion and size of each tile so they don't overlap each other
         playerTurn = new JLabel("Player turn");
 
-         tile0 = new JButton();
-         tile1 = new JButton();
-         tile2 = new JButton();
-         tile3 = new JButton();
-         tile4 = new JButton();
-         tile5 = new JButton();
-         tile6 = new JButton();
-         tile7 = new JButton();
-         tile8 = new JButton();
+        tile0 = new JButton();
+        tile1 = new JButton();
+        tile2 = new JButton();
+        tile3 = new JButton();
+        tile4 = new JButton();
+        tile5 = new JButton();
+       //tile6 = new JButton();
+       // tile7 = new JButton();
+       // tile8 = new JButton();
+
+        jb6=new JButton();
+        jb7=new JButton();
+        jb8=new JButton();
+        JLabel jl=new JLabel();
 
         tile0.setSize(200,200);
         tile0.setLocation(0,0);
@@ -80,17 +82,23 @@ public class GameBoardGUI{
         tile5.setSize(200,200);
         tile5.setLocation(400,200);
 
-        tile6.setSize(200,200);
-        tile6.setLocation(0,400);
+        jb6.setSize(200,200);
+        jb6.setLocation(0,400);
+        jb7.setSize(200,200);
+        jb7.setLocation(200,400);
+        jb8.setSize(200,200);
+        jb8.setLocation(400,400);
+     //tile6.setSize(200,200);
+     //   tile6.setLocation(0,400);
 
-        tile7.setSize(200,200);
-        tile7.setLocation(200,400);
+     //   tile7.setSize(200,200);
+     //   tile7.setLocation(200,400);
 
-        tile8.setSize(200,200);
-        tile8.setLocation(400,400);
+     //   tile8.setSize(200,200);
+     //   tile8.setLocation(400,400);
 
-        playerTurn.setLocation(270,560);
-        playerTurn.setSize(100,100);
+     //   playerTurn.setLocation(270,560);
+     //   playerTurn.setSize(100,100);
 
 
 
@@ -103,9 +111,12 @@ public class GameBoardGUI{
         tile3.setFont(buttonFont);
         tile4.setFont(buttonFont);
         tile5.setFont(buttonFont);
-        tile6.setFont(buttonFont);
-        tile7.setFont(buttonFont);
-        tile8.setFont(buttonFont);
+        jb6.setFont(buttonFont);
+        jb7.setFont(buttonFont);
+        jb8.setFont(buttonFont);
+       // tile6.setFont(buttonFont);
+       // tile7.setFont(buttonFont);
+       // tile8.setFont(buttonFont);
 
         EventHandler handler = new EventHandler();
 
@@ -115,9 +126,12 @@ public class GameBoardGUI{
         tile3.addActionListener(handler);
         tile4.addActionListener(handler);
         tile5.addActionListener(handler);
-        tile6.addActionListener(handler);
-        tile7.addActionListener(handler);
-        tile8.addActionListener(handler);
+        jb6.addActionListener(handler);
+        jb7.addActionListener(handler);
+        jb8.addActionListener(handler);
+      //  tile6.addActionListener(handler);
+       // tile7.addActionListener(handler);
+       /// tile8.addActionListener(handler);
 
         pane.add(tile0);
         pane.add(tile1);
@@ -125,18 +139,22 @@ public class GameBoardGUI{
         pane.add(tile3);
         pane.add(tile4);
         pane.add(tile5);
-        pane.add(tile6);
-        pane.add(tile7);
-        pane.add(tile8);
+        pane.add(jb6);
+        pane.add(jb7);
+        pane.add(jb8);
+
+      // pane.add(tile6);
+     //  pane.add(tile7);
+     // pane.add(tile8);
 
 
         pane.add(playerTurn);
 
-        ticTacToeBoard.setVisible(true);
+
     } // end of GameBoardGUI constructor
 
     /**Deals with button clicks during the game */
-   private class EventHandler implements ActionListener
+    private class EventHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
@@ -247,14 +265,14 @@ public class GameBoardGUI{
 
             }
 
-            if(e.getSource()==tile6)
+            if(e.getSource()==jb6)
             {
                 tileNum = 6;
 
                 if(tileTaken[tileNum] == false)
                 {
                     tileTaken[tileNum] = true;
-                    tile6.setText(printText);
+                    jb6.setText(printText);
                 }
 
                 else
@@ -264,14 +282,14 @@ public class GameBoardGUI{
 
             }
 
-            if(e.getSource()==tile7)
+            if(e.getSource()==jb7)
             {
                 tileNum = 7;
 
                 if(tileTaken[tileNum] == false)
                 {
                     tileTaken[tileNum] = true;
-                    tile7.setText(printText);
+                    jb7.setText(printText);
                 }
 
                 else
@@ -281,14 +299,14 @@ public class GameBoardGUI{
 
             }
 
-            if(e.getSource()==tile8)
+            if(e.getSource()==jb8)
             {
                 tileNum = 8;
 
                 if(tileTaken[tileNum] == false)
                 {
                     tileTaken[tileNum] = true;
-                    tile8.setText(printText);
+                    jb8.setText(printText);
 
                 }
 
@@ -313,13 +331,13 @@ public class GameBoardGUI{
 
             while (!isGameFinished)
             {
-                playerOneTurn();
+              //  playerOneTurn();
 
-                checkForWinner();
+               // checkForWinner();
 
-                playerTwoTurn();
+              //  playerTwoTurn();
 
-                checkForWinner();
+               // checkForWinner();
 
             }
 
@@ -330,13 +348,13 @@ public class GameBoardGUI{
         {
             while (!isGameFinished)
             {
-                playerOneTurn();
+              //  playerOneTurn();
 
-                checkForWinner();
+                //checkForWinner();
 
-                cpuTurn();
+                //cpuTurn();
 
-                checkForWinner();
+                //checkForWinner();
 
             }
 
@@ -346,22 +364,23 @@ public class GameBoardGUI{
     /**Sets the printText variable to x so if a button is clicked it applies the right mark */
     public  void playerOneTurn ()
     {
-        printText = "X";
-        playerTurn.setText("Player One Turn");
+       printText = "X";
+       // playerTurn.setText("Player One Turn");
 
     }//end of playerOneTurn
 
     /**Sets the printText variable to o so if a button is clicked it applies the right mark */
-    public  void playerTwoTurn ()
+   public  void playerTwoTurn ()
     {
         printText = "O";
-        playerTurn.setText("Player Two Turn");
+       // playerTurn.setText("Player Two Turn");
     }//end of playerTwoTurn
 
     /**The cpu loops through the tile array checking for the first available tile and selects it */
-    public  void cpuTurn ()
+ /*   public  void cpuTurn ()
     {
-        printText = "O";
+
+ /*       printText = "O";
         int i;
 
         for( i =0; i < tileTaken.length;i++) {
@@ -370,64 +389,64 @@ public class GameBoardGUI{
             }
         }
 
-           if(i == 0)
-           {
-               tile0.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 0)
+        {
+            tile0.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 1)
-           {
-               tile1.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 1)
+        {
+            tile1.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 2)
-           {
-               tile2.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 2)
+        {
+            tile2.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 3)
-           {
-               tile3.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 3)
+        {
+            tile3.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 4)
-           {
-               tile4.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 4)
+        {
+            tile4.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 5)
-           {
-               tile5.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 5)
+        {
+            tile5.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 6)
-           {
-               tile6.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 6)
+        {
+            jb6.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 7)
-           {
-               tile7.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 7)
+        {
+            jb7.setText(printText);
+            tileTaken[i] = true;
+        }
 
-           if(i == 8)
-           {
-               tile8.setText(printText);
-               tileTaken[i] = true;
-           }
+        if(i == 8)
+        {
+            jb8.setText(printText);
+            tileTaken[i] = true;
+        }
 
 
     }//end of cpuTurn
-
-    public  void checkForWinner()
+*/
+  /*  public  void checkForWinner()
     {
 
         //Horizontal wins for X
@@ -442,39 +461,39 @@ public class GameBoardGUI{
 
         }
 
-        if(tile6.getText().equals("X") && tile7.getText().equals("X") && tile8.getText().equals("X"))
+        if(jb6.getText().equals("X") && jb7.getText().equals("X") && jb8.getText().equals("X"))
         {
             isGameFinished = true;
 
         }
 
         //vertical wins for x
-        if(tile0.getText().equals("X") && tile3.getText().equals("X") && tile6.getText().equals("X"))
+        if(tile0.getText().equals("X") && tile3.getText().equals("X") && jb6.getText().equals("X"))
         {
             isGameFinished = true;
 
         }
 
-        if(tile1.getText().equals("X") && tile4.getText().equals("X") && tile7.getText().equals("X"))
+        if(tile1.getText().equals("X") && tile4.getText().equals("X") && jb7.getText().equals("X"))
         {
             isGameFinished = true;
 
         }
 
-        if(tile2.getText().equals("X") && tile5.getText().equals("X") && tile8.getText().equals("X"))
+        if(tile2.getText().equals("X") && tile5.getText().equals("X") && jb8.getText().equals("X"))
         {
             isGameFinished = true;
 
         }
 
         //diagonal wins for x
-        if(tile0.getText().equals("X") && tile4.getText().equals("X") && tile8.getText().equals("X"))
+        if(tile0.getText().equals("X") && tile4.getText().equals("X") && jb8.getText().equals("X"))
         {
             isGameFinished = true;
 
         }
 
-        if(tile6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
+        if(jb6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
         {
             isGameFinished = true;
 
@@ -494,52 +513,52 @@ public class GameBoardGUI{
 
         }
 
-        if(tile6.getText().equals("O") && tile7.getText().equals("O") && tile8.getText().equals("O"))
+        if(jb6.getText().equals("O") && jb7.getText().equals("O") && jb8.getText().equals("O"))
         {
             isGameFinished = true;
 
         }
 
         //vertical wins for O
-        if(tile0.getText().equals("O") && tile3.getText().equals("O") && tile6.getText().equals("O"))
+        if(tile0.getText().equals("O") && tile3.getText().equals("O") && jb6.getText().equals("O"))
         {
             isGameFinished = true;
 
         }
 
-        if(tile1.getText().equals("O") && tile4.getText().equals("O") && tile7.getText().equals("O"))
+        if(tile1.getText().equals("O") && tile4.getText().equals("O") && jb7.getText().equals("O"))
         {
             isGameFinished = true;
 
         }
 
-        if(tile2.getText().equals("O") && tile5.getText().equals("O") && tile8.getText().equals("O"))
+        if(tile2.getText().equals("O") && tile5.getText().equals("O") && jb8.getText().equals("O"))
         {
             isGameFinished = true;
 
         }
 
         //diagonal wins for O
-        if(tile0.getText().equals("O") && tile4.getText().equals("O") && tile8.getText().equals("O"))
+        if(tile0.getText().equals("O") && tile4.getText().equals("O") && jb8.getText().equals("O"))
         {
             isGameFinished = true;
 
         }
 
-        if(tile6.getText().equals("O") && tile4.getText().equals("O") && tile2.getText().equals("O"))
+        if(jb6.getText().equals("O") && tile4.getText().equals("O") && tile2.getText().equals("O"))
         {
             isGameFinished = true;
 
         }
 
         if(tileTaken[0]==true && tileTaken[1]==true && tileTaken[2]==true
-        && tileTaken[3]==true && tileTaken[4]==true && tileTaken[5]==true
-        && tileTaken[6]==true && tileTaken[7]==true && tileTaken[8]==true)
+                && tileTaken[3]==true && tileTaken[4]==true && tileTaken[5]==true
+                && tileTaken[6]==true && tileTaken[7]==true && tileTaken[8]==true)
         {
             isGameFinished = true;
         }
 
-    }
+    }*/
 
    /* public static void main(String[] args)
     {

@@ -30,7 +30,9 @@ public class Game {
 
         if (MainMenuGUI.getOptionSelected() == true)
         {
-           GameBoardGUI boardGUI = new GameBoardGUI();
+           GameBoardGUI2 boardGUI = new GameBoardGUI2();
+           boardGUI.setVisible(true);
+           boardGUI.playGame();
            System.out.print("\nIn MainMenuGUI.getOptionSelected = true");
 
         }//end of if(mainMenu.getOptionSelected() == true)
@@ -55,8 +57,6 @@ public class Game {
             {
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 mediaPlayer.play();
-
-
             }
             catch(Exception e)
             {
