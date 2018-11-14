@@ -439,17 +439,20 @@ public class GameBoardGUI{
         if(tile0.getText().equals("X") && tile1.getText().equals("X") && tile2.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
         }
 
         if(tile3.getText().equals("X") && tile4.getText().equals("X") && tile5.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         if(tile6.getText().equals("X") && tile7.getText().equals("X") && tile8.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
@@ -457,18 +460,21 @@ public class GameBoardGUI{
         if(tile0.getText().equals("X") && tile3.getText().equals("X") && tile6.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         if(tile1.getText().equals("X") && tile4.getText().equals("X") && tile7.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         if(tile2.getText().equals("X") && tile5.getText().equals("X") && tile8.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
@@ -476,12 +482,14 @@ public class GameBoardGUI{
         if(tile0.getText().equals("X") && tile4.getText().equals("X") && tile8.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         if(tile6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
@@ -544,6 +552,6 @@ public class GameBoardGUI{
             isGameFinished = true;
         }
 
-    }
+    }//end of checkForWinner
 
 }

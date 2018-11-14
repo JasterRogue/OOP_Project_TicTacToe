@@ -47,7 +47,7 @@ public class Game {
 
 
 
-        public static void playMusic(String path)
+        public static void playMusic(String path) // I got the code for the playMusic() from John Brosnan
          {
             Media audioClip = new Media(new File(path).toURI().toString());
 

@@ -42,11 +42,13 @@ public class MainMenuGUI {//extends JFrame {
         onePlayerButton.setLocation(180,150);
         mainMenu.add(onePlayerButton);
 
+        //stats button setup
         statsButton.setText("Stats");
         statsButton.setSize(100,70);
         statsButton.setLocation(180,260);
         mainMenu.add(statsButton);
 
+        //quit button setup
         quitButton.setText("Quit");
         quitButton.setSize(100,70);
         quitButton.setLocation(180,360);
@@ -74,8 +76,8 @@ public class MainMenuGUI {//extends JFrame {
                // typeOfGame = "two";
                 optionSelected = true;
                 setTypeOfGame("two");
-               // mainMenu.setVisible(false);
-                mainMenu.dispose();
+                mainMenu.setVisible(false);
+               // mainMenu.dispose();
                 String args[] = {"",""};
                 Game.main(args);
                 //Game.x(this);
