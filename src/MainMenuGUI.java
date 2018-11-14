@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenuGUI extends JFrame {
+public class MainMenuGUI {//extends JFrame {
 
     JFrame mainMenu = new JFrame();
     JButton twoPlayerButton = new JButton();
@@ -74,7 +74,8 @@ public class MainMenuGUI extends JFrame {
                // typeOfGame = "two";
                 optionSelected = true;
                 setTypeOfGame("two");
-                mainMenu.setVisible(false);
+               // mainMenu.setVisible(false);
+                mainMenu.dispose();
                 String args[] = {"",""};
                 Game.main(args);
                 //Game.x(this);

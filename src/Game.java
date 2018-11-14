@@ -11,27 +11,33 @@ import javax.swing.*;
 import javafx.scene.media.Media;
 public class Game {
 
-    static String printText;
     static int count = 0;
     static MediaPlayer mediaPlayer;
     static String audioFile= "bensound-summer.wav";
     //static String audioFile = "gunshot.wav"; was used for testing audio
+    static MainMenuGUI mainMenu;
+
 
     public static void main(String[] args)
     {
-        JFXPanel fxPanel = new JFXPanel();
-        count++;
-        MainMenuGUI mainMenu;
-        System.out.print("\nIn main of Game.java");
-       if(count==1)
-             mainMenu = new MainMenuGUI();
-        playMusic(audioFile);
+        if(count==0) {
+            JFXPanel fxPanel = new JFXPanel();
+            count++;
+
+            playMusic(audioFile);
+            System.out.print("\nIn main of Game.java");
+            mainMenu = new MainMenuGUI();
+        }
+
+       //if(count==1)
+
+
 
 
         if (MainMenuGUI.getOptionSelected() == true)
         {
-           GameBoardGUI2 boardGUI = new GameBoardGUI2();
-           boardGUI.setVisible(true);
+           GameBoardGUI boardGUI = new GameBoardGUI();
+          // boardGUI.setVisible(true);
            boardGUI.playGame();
            System.out.print("\nIn MainMenuGUI.getOptionSelected = true");
 

@@ -13,15 +13,24 @@ public class GameBoardGUI{
     ImageIcon ticTacToeIcon;
 
     //Each board tile is an individual button
-     JButton tile0;
-     JButton tile1;
-     JButton tile2;
-     JButton tile3;
-     JButton tile4;
-     JButton tile5;
-     JButton tile6;
+     JButton tile0   = new JButton();
+     JButton tile1 = new JButton();
+     JButton tile2 = new JButton();
+     JButton tile3 = new JButton();
+     JButton tile4 = new JButton();
+     JButton tile5 = new JButton();
+     JButton tile6 = new JButton();
      JButton tile7;
      JButton tile8;
+
+
+
+   /* tile2 = new JButton();
+    tile3 = new JButton();
+    tile4 = new JButton();
+    tile5 = new JButton();
+    tile6 = new JButton();*/
+
 
      JLabel playerTurn;
 
@@ -52,15 +61,15 @@ public class GameBoardGUI{
         //sets the postion and size of each tile so they don't overlap each other
         playerTurn = new JLabel("Player turn");
 
-         tile0 = new JButton();
+        /* tile0 = new JButton();
          tile1 = new JButton();
          tile2 = new JButton();
          tile3 = new JButton();
          tile4 = new JButton();
          tile5 = new JButton();
-         tile6 = new JButton();
-         tile7 = new JButton();
-         tile8 = new JButton();
+         tile6 = new JButton();*/
+       //  tile7 = new JButton();
+       //  tile8 = new JButton();
 
         tile0.setSize(200,200);
         tile0.setLocation(0,0);
@@ -80,22 +89,17 @@ public class GameBoardGUI{
         tile5.setSize(200,200);
         tile5.setLocation(400,200);
 
-        tile6.setSize(200,200);
-        tile6.setLocation(0,400);
+       // tile6.setSize(200,200);
+       // tile6.setLocation(0,400);
 
-        tile7.setSize(200,200);
-        tile7.setLocation(200,400);
+     //   tile7.setSize(200,200);
+     //   tile7.setLocation(200,400);
 
-        tile8.setSize(200,200);
-        tile8.setLocation(400,400);
+      //  tile8.setSize(200,200);
+      //  tile8.setLocation(400,400);
 
-        playerTurn.setLocation(270,560);
-        playerTurn.setSize(100,100);
-
-
-
-
-
+      //  playerTurn.setLocation(270,560);
+       // playerTurn.setSize(100,100);
 
         tile0.setFont(buttonFont);
         tile1.setFont(buttonFont);
@@ -103,9 +107,9 @@ public class GameBoardGUI{
         tile3.setFont(buttonFont);
         tile4.setFont(buttonFont);
         tile5.setFont(buttonFont);
-        tile6.setFont(buttonFont);
-        tile7.setFont(buttonFont);
-        tile8.setFont(buttonFont);
+      //  tile6.setFont(buttonFont);
+      //  tile7.setFont(buttonFont);
+      //  tile8.setFont(buttonFont);
 
         EventHandler handler = new EventHandler();
 
@@ -115,22 +119,22 @@ public class GameBoardGUI{
         tile3.addActionListener(handler);
         tile4.addActionListener(handler);
         tile5.addActionListener(handler);
-        tile6.addActionListener(handler);
-        tile7.addActionListener(handler);
-        tile8.addActionListener(handler);
+      // tile6.addActionListener(handler);
+      //  tile7.addActionListener(handler);
+      //  tile8.addActionListener(handler);
 
-        pane.add(tile0);
-        pane.add(tile1);
-        pane.add(tile2);
+        ticTacToeBoard.add(tile0);
+        ticTacToeBoard.add(tile1);
+        ticTacToeBoard.add(tile2);
         pane.add(tile3);
         pane.add(tile4);
         pane.add(tile5);
-        pane.add(tile6);
-        pane.add(tile7);
-        pane.add(tile8);
+      // pane.add(tile6);
+       // pane.add(tile7);
+       // pane.add(tile8);
 
 
-        pane.add(playerTurn);
+       // pane.add(playerTurn);
 
         ticTacToeBoard.setVisible(true);
     } // end of GameBoardGUI constructor
@@ -364,7 +368,8 @@ public class GameBoardGUI{
         printText = "O";
         int i;
 
-        for( i =0; i < tileTaken.length;i++) {
+        for( i =0; i < tileTaken.length;i++)
+        {
             if (tileTaken[i] == false) {
                 break;
             }
@@ -540,12 +545,5 @@ public class GameBoardGUI{
         }
 
     }
-
-   /* public static void main(String[] args)
-    {
-        System.out.print("In main of GameBoardGUI");
-       // playGame();
-    }*/
-
 
 }
