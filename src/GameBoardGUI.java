@@ -20,19 +20,20 @@ public class GameBoardGUI{
      JButton tile4 = new JButton();
      JButton tile5 = new JButton();
      JButton tile6 = new JButton();
-     JButton tile7;
-     JButton tile8;
+     JButton tile7 = new JButton();
+     JButton tile8 = new JButton();
+     
+     //JB advise - you have an awful lot of repeated code here in terms of the JButtons
+     //See if you can improve the efficiency of it by creating an array of size 9 to create and hold 
+     //the 9 JButton objects using a for loop and also manipulate them in several ways like setting their 
+     //size (which is common to all, setting their font and adding the action listener to them as well as
+     //adding each one to the pane - it will streamline your code a lot 
 
-
-
-   /* tile2 = new JButton();
-    tile3 = new JButton();
-    tile4 = new JButton();
-    tile5 = new JButton();
-    tile6 = new JButton();*/
 
 
      JLabel playerTurn;
+     int turns = 0; //added by JB - use this to count the number of tiles that have been selected to date
+                    //this can be used to determine whos turn it is
 
     static Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
@@ -59,17 +60,7 @@ public class GameBoardGUI{
         pane.setBackground(Color.LIGHT_GRAY);
 
         //sets the postion and size of each tile so they don't overlap each other
-        playerTurn = new JLabel("Player turn");
-
-        /* tile0 = new JButton();
-         tile1 = new JButton();
-         tile2 = new JButton();
-         tile3 = new JButton();
-         tile4 = new JButton();
-         tile5 = new JButton();
-         tile6 = new JButton();*/
-       //  tile7 = new JButton();
-       //  tile8 = new JButton();
+        playerTurn = new JLabel("Player One Turn");
 
         tile0.setSize(200,200);
         tile0.setLocation(0,0);
@@ -89,17 +80,17 @@ public class GameBoardGUI{
         tile5.setSize(200,200);
         tile5.setLocation(400,200);
 
-       // tile6.setSize(200,200);
-       // tile6.setLocation(0,400);
+        tile6.setSize(200,200);
+        tile6.setLocation(0,400);
 
-     //   tile7.setSize(200,200);
-     //   tile7.setLocation(200,400);
+        tile7.setSize(200,200);
+        tile7.setLocation(200,400);
 
-      //  tile8.setSize(200,200);
-      //  tile8.setLocation(400,400);
+        tile8.setSize(200,200);
+        tile8.setLocation(400,400);
 
-      //  playerTurn.setLocation(270,560);
-       // playerTurn.setSize(100,100);
+        playerTurn.setLocation(270,560);
+        playerTurn.setSize(100,100);
 
         tile0.setFont(buttonFont);
         tile1.setFont(buttonFont);
@@ -107,9 +98,9 @@ public class GameBoardGUI{
         tile3.setFont(buttonFont);
         tile4.setFont(buttonFont);
         tile5.setFont(buttonFont);
-      //  tile6.setFont(buttonFont);
-      //  tile7.setFont(buttonFont);
-      //  tile8.setFont(buttonFont);
+        tile6.setFont(buttonFont);
+        tile7.setFont(buttonFont);
+        tile8.setFont(buttonFont);
 
         EventHandler handler = new EventHandler();
 
@@ -119,33 +110,69 @@ public class GameBoardGUI{
         tile3.addActionListener(handler);
         tile4.addActionListener(handler);
         tile5.addActionListener(handler);
-      // tile6.addActionListener(handler);
-      //  tile7.addActionListener(handler);
-      //  tile8.addActionListener(handler);
+        tile6.addActionListener(handler);
+        tile7.addActionListener(handler);
+        tile8.addActionListener(handler);
 
-        ticTacToeBoard.add(tile0);
-        ticTacToeBoard.add(tile1);
-        ticTacToeBoard.add(tile2);
+        pane.add(tile0);
+        pane.add(tile1);
+        pane.add(tile2);
         pane.add(tile3);
         pane.add(tile4);
         pane.add(tile5);
-      // pane.add(tile6);
-       // pane.add(tile7);
-       // pane.add(tile8);
+        pane.add(tile6);
+        pane.add(tile7);
+        pane.add(tile8);
 
-
-       // pane.add(playerTurn);
+        pane.add(playerTurn);
 
         ticTacToeBoard.setVisible(true);
+        
+        //playGame(); //JB - it is the call to playGame() that is ultimately causing the game to crash after board GUI is called
+        
+        
     } // end of GameBoardGUI constructor
 
     /**Deals with button clicks during the game */
+    //JB - I made no changes to the code below at all. At the moment when I click on each tile
+    //it renders an 'O' and should I click on the same tile twice I get a message dialog
+    //indicating the tile has already been taken
+    
    private class EventHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
             int tileNum;
-            String printText = "O";
+            String printText;
+            
+            //JB advise - if you had the 9 JButtons all in an array then you could write the code below in a much
+            //more efficient manner, as it is all common for each tile in the game e.g. if the array was declared
+            //as follows
+            //
+            //  Tile[] tiles = new Tile[9];
+            //
+            //then you could loop over the tiles in the array using a for loop and test as follows each time
+            //
+            //if(e.getSource()==tiles[i] && tileTaken[tileNum] == false)
+            //{
+            //	    tileTaken[i] = true; //this will be a parallel array for the tiles array
+            //      tiles[i].setText(printText);
+            //}
+            //else
+            //   .......
+
+
+            if(turns%2==0) //it player 1's turn
+            {
+                printText = "O";
+                playerTurn.setText("Player Two Turn");
+               // cpuTurn();
+            }
+            else {
+                printText = "X";
+               // cpuTurn();
+                playerTurn.setText("Player One Turn");
+            }
 
             if(e.getSource()==tile0)
             {
@@ -153,10 +180,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
-
+                    turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile0.setText(printText);
-
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -172,8 +199,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile1.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -189,8 +218,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile2.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -206,8 +237,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile3.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -223,8 +256,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile4.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -240,8 +275,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile5.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -257,8 +294,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile6.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -274,8 +313,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile7.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
 
                 else
@@ -291,8 +332,10 @@ public class GameBoardGUI{
 
                 if(tileTaken[tileNum] == false)
                 {
+                	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
                     tile8.setText(printText);
+                    checkForWinner(); //added by JB to check for winner after each turn is taken
 
                 }
 
@@ -307,7 +350,12 @@ public class GameBoardGUI{
     }//end of EventHandler class
 
     /**When this method is called it plays the game , turns will continue until isGameFinished evaluates to true */
-    public  void playGame()
+    //JB Advise - you'll never call this method, the while loop within it was causing the crash we saw earlier in class
+    //as it was eating up the entire CPU time and so the GUI could never get a chance to render
+    //The player turns are taken care of through a simple counter variable here and the checkForWinner() can be called
+    //on its own after each turn is taken
+    
+    /*public  void playGame()
     {
         boolean isGameFinished=false;
 
@@ -315,7 +363,7 @@ public class GameBoardGUI{
         {
             System.out.print("\nIn playGame method");
 
-            while (!isGameFinished)
+            while (!isGameFinished) 
             {
                 playerOneTurn();
 
@@ -345,7 +393,7 @@ public class GameBoardGUI{
             }
 
         }
-    }//end of play game
+    }//end of play game*/
 
     /**Sets the printText variable to x so if a button is clicked it applies the right mark */
     public  void playerOneTurn ()
@@ -435,121 +483,132 @@ public class GameBoardGUI{
     public  void checkForWinner()
     {
 
-        //Horizontal wins for X
+        //JB - created else-if here for efficiency and deal with "no winner" scenario
+        
+        //Horizontal wins for X 
         if(tile0.getText().equals("X") && tile1.getText().equals("X") && tile2.getText().equals("X"))
         {
-            isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            isGameFinished = true; //JB - don't need this boolean really
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
         }
 
-        if(tile3.getText().equals("X") && tile4.getText().equals("X") && tile5.getText().equals("X"))
+        else if(tile3.getText().equals("X") && tile4.getText().equals("X") && tile5.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile6.getText().equals("X") && tile7.getText().equals("X") && tile8.getText().equals("X"))
+        else if(tile6.getText().equals("X") && tile7.getText().equals("X") && tile8.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         //vertical wins for x
-        if(tile0.getText().equals("X") && tile3.getText().equals("X") && tile6.getText().equals("X"))
+        else if(tile0.getText().equals("X") && tile3.getText().equals("X") && tile6.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile1.getText().equals("X") && tile4.getText().equals("X") && tile7.getText().equals("X"))
+        else if(tile1.getText().equals("X") && tile4.getText().equals("X") && tile7.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile2.getText().equals("X") && tile5.getText().equals("X") && tile8.getText().equals("X"))
+        else if(tile2.getText().equals("X") && tile5.getText().equals("X") && tile8.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         //diagonal wins for x
-        if(tile0.getText().equals("X") && tile4.getText().equals("X") && tile8.getText().equals("X"))
+        else if(tile0.getText().equals("X") && tile4.getText().equals("X") && tile8.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
+        else if(tile6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
         {
             isGameFinished = true;
-            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
 
         //Horizontal wins for O
-        if(tile0.getText().equals("O") && tile1.getText().equals("O") && tile2.getText().equals("O"))
+        else if(tile0.getText().equals("O") && tile1.getText().equals("O") && tile2.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile3.getText().equals("O") && tile4.getText().equals("O") && tile5.getText().equals("O"))
+        else if(tile3.getText().equals("O") && tile4.getText().equals("O") && tile5.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile6.getText().equals("O") && tile7.getText().equals("O") && tile8.getText().equals("O"))
+        else if(tile6.getText().equals("O") && tile7.getText().equals("O") && tile8.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         //vertical wins for O
-        if(tile0.getText().equals("O") && tile3.getText().equals("O") && tile6.getText().equals("O"))
+        else if(tile0.getText().equals("O") && tile3.getText().equals("O") && tile6.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile1.getText().equals("O") && tile4.getText().equals("O") && tile7.getText().equals("O"))
+        else if(tile1.getText().equals("O") && tile4.getText().equals("O") && tile7.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile2.getText().equals("O") && tile5.getText().equals("O") && tile8.getText().equals("O"))
+        else if(tile2.getText().equals("O") && tile5.getText().equals("O") && tile8.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
         //diagonal wins for O
-        if(tile0.getText().equals("O") && tile4.getText().equals("O") && tile8.getText().equals("O"))
+        else if(tile0.getText().equals("O") && tile4.getText().equals("O") && tile8.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tile6.getText().equals("O") && tile4.getText().equals("O") && tile2.getText().equals("O"))
+        else if(tile6.getText().equals("O") && tile4.getText().equals("O") && tile2.getText().equals("O"))
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
         }
 
-        if(tileTaken[0]==true && tileTaken[1]==true && tileTaken[2]==true
+        else if(tileTaken[0]==true && tileTaken[1]==true && tileTaken[2]==true
         && tileTaken[3]==true && tileTaken[4]==true && tileTaken[5]==true
         && tileTaken[6]==true && tileTaken[7]==true && tileTaken[8]==true)
         {
             isGameFinished = true;
+            JOptionPane.showMessageDialog(null,"Neither Player Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//end of checkForWinner

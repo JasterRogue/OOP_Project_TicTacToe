@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenuGUI {//extends JFrame {
+public class MainMenuGUI {
 
     JFrame mainMenu = new JFrame();
     JButton twoPlayerButton = new JButton();
@@ -74,25 +74,27 @@ public class MainMenuGUI {//extends JFrame {
             {
                 //Sets the varaible based on what option is selected
                // typeOfGame = "two";
-                optionSelected = true;
-                setTypeOfGame("two");
-                mainMenu.setVisible(false);
-               // mainMenu.dispose();
-                String args[] = {"",""};
-                Game.main(args);
-                //Game.x(this);
+                optionSelected = true; //JB - will you need this?
+                setTypeOfGame("two"); //or this?
+                
+                mainMenu.dispose();
+              
+                GameBoardGUI boardGUI = new GameBoardGUI();
+                
             }
 
             if(e.getSource() == onePlayerButton)
             {
                 //Sets the varaible based on what option is selected
                 //typeOfGame = "one";
-                setTypeOfGame("one");
-                System.out.print("Type of game is: " + getTypeOfGame());
+                setTypeOfGame("one"); 
+                System.out.print("Type of game is: " + getTypeOfGame()); 
                 optionSelected = true;
-                mainMenu.setVisible(false);
-                String args[] = {"",""};
-                Game.main(args);
+            
+                mainMenu.dispose();
+              
+                GameBoardGUI boardGUI = new GameBoardGUI();
+           
             }
 
             if(e.getSource()== statsButton)
