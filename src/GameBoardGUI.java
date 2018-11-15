@@ -610,6 +610,7 @@ public class GameBoardGUI{
             mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
             ArrayList<Player> playerDetails = new ArrayList<>();
             playerDetails.add(new Player(playerGameBoardGUI.getName(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
+
             try {
                 saveStats(playerDetails);
             }

@@ -18,9 +18,13 @@ public class MainMenuGUI {
     private static String typeOfGame;
     private static boolean optionSelected=false;
 
-    Player player = new Player();
+    JTextArea playerStats = new JTextArea();
 
-    //Creating the menu gui
+    Player player = new Player();
+    GameBoardGUI boardGUI;
+
+    /**Creates the main menu gui setting it up with jbuttons */
+
     public MainMenuGUI()
     {
         //Menu JFrame setup
@@ -82,7 +86,7 @@ public class MainMenuGUI {
                 mainMenu.dispose();
                // mainMenu.setVisible(false);
               
-                GameBoardGUI boardGUI = new GameBoardGUI();
+                 boardGUI = new GameBoardGUI();
                 
             }
 
@@ -96,13 +100,31 @@ public class MainMenuGUI {
             
                 mainMenu.dispose();
               
-                GameBoardGUI boardGUI = new GameBoardGUI();
+                 boardGUI = new GameBoardGUI();
            
             }
 
             if(e.getSource()== statsButton)
             {
                 JOptionPane.showMessageDialog(null,player.toString(),"Stats",JOptionPane.INFORMATION_MESSAGE);
+                boardGUI.openStats();
+                playerStats.setText("Player Stats");
+
+                //
+                if(boardGUI.playerDetails.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null,"No stats to display");
+                }
+                else
+                    {
+
+                    for (int i = 0; i < boardGUI.playerDetails.size(); i++)
+                    {
+                        playerStats.append(boardGUI.playerDetails.get(i).toString());
+                    }
+
+                    JOptionPane.showMessageDialog(null,playerStats);
+                }
 
             }
 
