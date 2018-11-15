@@ -18,6 +18,8 @@ public class MainMenuGUI {
     private static String typeOfGame;
     private static boolean optionSelected=false;
 
+    Player player = new Player();
+
     //Creating the menu gui
     public MainMenuGUI()
     {
@@ -78,6 +80,7 @@ public class MainMenuGUI {
                 setTypeOfGame("two"); //or this?
                 
                 mainMenu.dispose();
+               // mainMenu.setVisible(false);
               
                 GameBoardGUI boardGUI = new GameBoardGUI();
                 
@@ -99,7 +102,8 @@ public class MainMenuGUI {
 
             if(e.getSource()== statsButton)
             {
-                JOptionPane.showMessageDialog(null,"Wins: " + "\nTies" + "\nLosses","Stats",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,player.toString(),"Stats",JOptionPane.INFORMATION_MESSAGE);
+
             }
 
             if(e.getSource()== quitButton)
@@ -126,6 +130,7 @@ public class MainMenuGUI {
     {
         return optionSelected;
     }
+
 
 }
 

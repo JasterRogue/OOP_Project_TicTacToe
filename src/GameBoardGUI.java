@@ -6,14 +6,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
 
 public class GameBoardGUI{
 
     JFrame ticTacToeBoard;
     ImageIcon ticTacToeIcon;
 
+    Player playerGameBoardGUI = new Player();
+    String winner; // This will store who is the winner
+
     //Each board tile is an individual button
-     JButton tile0   = new JButton();
+     JButton tile0 = new JButton();
      JButton tile1 = new JButton();
      JButton tile2 = new JButton();
      JButton tile3 = new JButton();
@@ -35,11 +40,13 @@ public class GameBoardGUI{
      int turns = 0; //added by JB - use this to count the number of tiles that have been selected to date
                     //this can be used to determine whos turn it is
 
-    static Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
+     Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
+    ArrayList<Player> playerDetails = new ArrayList<>();
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
 
-    static String printText;
-    static boolean isGameFinished;
+     String printText;
+     boolean isGameFinished;
+
 
     /**Creates the Game board . Creates 9 buttons and sets there size, location and font*/
     public GameBoardGUI()
@@ -166,11 +173,14 @@ public class GameBoardGUI{
             {
                 printText = "O";
                 playerTurn.setText("Player Two Turn");
+
                // cpuTurn();
             }
             else {
                 printText = "X";
-               // cpuTurn();
+                if(MainMenuGUI.getTypeOfGame().equals("one")) {
+                     cpuTurn();
+                }
                 playerTurn.setText("Player One Turn");
             }
 
@@ -354,67 +364,12 @@ public class GameBoardGUI{
     //as it was eating up the entire CPU time and so the GUI could never get a chance to render
     //The player turns are taken care of through a simple counter variable here and the checkForWinner() can be called
     //on its own after each turn is taken
-    
-    /*public  void playGame()
-    {
-        boolean isGameFinished=false;
-
-        if (MainMenuGUI.getTypeOfGame().equals("two"))
-        {
-            System.out.print("\nIn playGame method");
-
-            while (!isGameFinished) 
-            {
-                playerOneTurn();
-
-                checkForWinner();
-
-                playerTwoTurn();
-
-                checkForWinner();
-
-            }
-
-        }
-
-
-        if (MainMenuGUI.getTypeOfGame().equals("one"))
-        {
-            while (!isGameFinished)
-            {
-                playerOneTurn();
-
-                checkForWinner();
-
-                cpuTurn();
-
-                checkForWinner();
-
-            }
-
-        }
-    }//end of play game*/
-
-    /**Sets the printText variable to x so if a button is clicked it applies the right mark */
-    public  void playerOneTurn ()
-    {
-        printText = "X";
-        playerTurn.setText("Player One Turn");
-
-    }//end of playerOneTurn
-
-    /**Sets the printText variable to o so if a button is clicked it applies the right mark */
-    public  void playerTwoTurn ()
-    {
-        printText = "O";
-        playerTurn.setText("Player Two Turn");
-    }//end of playerTwoTurn
 
     /**The cpu loops through the tile array checking for the first available tile and selects it */
     public  void cpuTurn ()
     {
-        printText = "O";
         int i;
+        printText = "X";
 
         for( i =0; i < tileTaken.length;i++)
         {
@@ -429,49 +384,49 @@ public class GameBoardGUI{
                tileTaken[i] = true;
            }
 
-           if(i == 1)
+           else if(i == 1)
            {
                tile1.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 2)
+           else if(i == 2)
            {
                tile2.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 3)
+          else if(i == 3)
            {
                tile3.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 4)
+           else if(i == 4)
            {
                tile4.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 5)
+           else if(i == 5)
            {
                tile5.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 6)
+           else if(i == 6)
            {
                tile6.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 7)
+          else if(i == 7)
            {
                tile7.setText(printText);
                tileTaken[i] = true;
            }
 
-           if(i == 8)
+           else
            {
                tile8.setText(printText);
                tileTaken[i] = true;
@@ -490,12 +445,15 @@ public class GameBoardGUI{
         {
             isGameFinished = true; //JB - don't need this boolean really
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
+
         }
 
         else if(tile3.getText().equals("X") && tile4.getText().equals("X") && tile5.getText().equals("X"))
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
 
         }
 
@@ -503,6 +461,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
 
         }
 
@@ -511,6 +470,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
 
         }
 
@@ -518,6 +478,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
 
         }
 
@@ -525,6 +486,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
 
         }
 
@@ -533,13 +495,14 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
-
+            winner = "playerTwo";
         }
 
         else if(tile6.getText().equals("X") && tile4.getText().equals("X") && tile2.getText().equals("X"))
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerTwo";
 
         }
 
@@ -549,6 +512,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -556,6 +520,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -564,6 +529,7 @@ public class GameBoardGUI{
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
 
+            winner = "playerOne";
         }
 
         //vertical wins for O
@@ -571,6 +537,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -578,6 +545,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -585,6 +553,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -593,6 +562,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -600,6 +570,7 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player One Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "playerOne";
 
         }
 
@@ -609,8 +580,90 @@ public class GameBoardGUI{
         {
             isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Neither Player Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
+            winner = "na";
+        }
+
+        if(isGameFinished)
+        {
+            playerGameBoardGUI.setName(JOptionPane.showInputDialog("Player , enter your name"));
+            if(winner.equals("playerOne"))
+            {
+                playerGameBoardGUI.setNumberOfWins(playerGameBoardGUI.getNumberOfWins() + 1);
+
+            }
+
+            else if(winner.equals("playerTwo"))
+            {
+                playerGameBoardGUI.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses() + 1);
+            }
+
+            else
+            {
+                playerGameBoardGUI.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws() + 1);
+            }
+            ticTacToeBoard.dispose();
+            MainMenuGUI mainMenuGUI = new MainMenuGUI();
+
+            mainMenuGUI.player.setName(playerGameBoardGUI.getName());
+            mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
+            mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
+            mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
+            ArrayList<Player> playerDetails = new ArrayList<>();
+            playerDetails.add(new Player(playerGameBoardGUI.getName(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
+            try {
+                saveStats(playerDetails);
+            }
+
+            catch(IOException e)
+            {
+                JOptionPane.showMessageDialog(null,"Could not save stats");
+
+            }
         }
 
     }//end of checkForWinner
+
+    public void saveStats(ArrayList<Player> playerDetails) throws IOException
+    {
+        try {
+            File file = new File("playerStats.dat");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(playerDetails);
+            JOptionPane.showMessageDialog(null, "Player details saved successfully");
+            oos.close();
+        }
+
+        catch(FileNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null,"Error. Could not find file.");
+
+        }
+
+    }//end of saveStats()
+
+    public void openStats()
+    {
+        try{
+            File file = new File("playerStats.dat");
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+           ArrayList<Player> playerDetails = (ArrayList<Player>) ois.readObject();
+            ois.close();
+        }
+
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null,"Could not open stats");
+        }
+
+        catch(ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null,"Error. Class not found");
+
+        }
+
+
+    }//end of openStats
 
 }

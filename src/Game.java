@@ -1,6 +1,5 @@
 //Game.java by Ryan Madigan
-/*This class will be used for playing the game calling other classes and methods.
-* While also using some of its own methods*/
+/*This class will be used for starting everything and also plays the music*/
 
 
 import javafx.embed.swing.JFXPanel;
