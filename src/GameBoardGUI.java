@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class GameBoardGUI implements CheckingWinners{
 
-    File file = new File("playerStats.dat");
+    File file;
     ArrayList<Player> playerDetails;
 
 
@@ -138,6 +138,7 @@ public class GameBoardGUI implements CheckingWinners{
         pane.add(playerTurn);
 
         playerDetails = new ArrayList<>();
+        file = new File("playerStats.dat");
 
         ticTacToeBoard.setVisible(false);
         
@@ -182,13 +183,9 @@ public class GameBoardGUI implements CheckingWinners{
                 printText = "O";
                 playerTurn.setText("Player Two Turn");
 
-               // cpuTurn();
             }
             else {
                 printText = "X";
-                if(MainMenuGUI.getTypeOfGame().equals("one")) {
-                     //cpuTurn();
-                }
                 playerTurn.setText("Player One Turn");
             }
 
@@ -368,78 +365,6 @@ public class GameBoardGUI implements CheckingWinners{
         } // end of actionPerformed
     }//end of EventHandler class
 
-    /**The cpu loops through the tile array checking for the first available tile and selects it */
-    /*public  void cpuTurn ()
-    {
-        int i;
-        printText = "X";
-
-        for( i =0; i < tileTaken.length;i++)
-        {
-            if (tileTaken[i] == false) {
-                break;
-            }
-        }
-
-           if(i == 0)
-           {
-               tile0.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           else if(i == 1)
-           {
-               tile1.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           else if(i == 2)
-           {
-               tile2.setText(printText);
-               tileTaken[i] = true;
-           }
-
-          else if(i == 3)
-           {
-               tile3.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           else if(i == 4)
-           {
-               tile4.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           else if(i == 5)
-           {
-               tile5.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           else if(i == 6)
-           {
-               tile6.setText(printText);
-               tileTaken[i] = true;
-           }
-
-          else if(i == 7)
-           {
-               tile7.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           else
-           {
-               tile8.setText(printText);
-               tileTaken[i] = true;
-           }
-
-           System.out.print("\nCPU chose tile: " + i);
-
-
-    }//end of cpuTurn */
-
     /**This method goes through all the possible winning
      * combinations for each player. There is also a condition
      * if the game is a draw*/
@@ -451,7 +376,7 @@ public class GameBoardGUI implements CheckingWinners{
         //Horizontal wins for X 
         if(tile0.getText().equals("X") && tile1.getText().equals("X") && tile2.getText().equals("X"))
         {
-            isGameFinished = true; //JB - don't need this boolean really
+            isGameFinished = true;
             JOptionPane.showMessageDialog(null,"Player Two Wins","End of Game",JOptionPane.INFORMATION_MESSAGE);
             winner = "playerTwo";
 
@@ -593,6 +518,8 @@ public class GameBoardGUI implements CheckingWinners{
 
         if(isGameFinished)
         {
+            playerGameBoardGUI.setGamesPlayed(playerGameBoardGUI.getGamesPlayed() + 1);
+
             if(winner.equals("playerOne"))
             {
                 playerGameBoardGUI.setNumberOfWins(playerGameBoardGUI.getNumberOfWins() + 1);
@@ -613,12 +540,12 @@ public class GameBoardGUI implements CheckingWinners{
             //ticTacToeBoard.dispose();
             MainMenuGUI mainMenuGUI = new MainMenuGUI();
 
-            mainMenuGUI.player.setName(Game.player.getName());
+            mainMenuGUI.player.setGamesPlayed(playerGameBoardGUI.getGamesPlayed());
             mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
             mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
             mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
 
-            playerDetails.add(new Player(playerGameBoardGUI.getName(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
+            playerDetails.add(new Player(playerGameBoardGUI.getGamesPlayed(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
 
             saveStats(playerDetails);
 
@@ -632,7 +559,6 @@ public class GameBoardGUI implements CheckingWinners{
     {
 
         try {
-            //File file = new File("playerStats.dat");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(playerDetails);
@@ -674,7 +600,7 @@ public class GameBoardGUI implements CheckingWinners{
 
         catch (IOException e)
         {
-            JOptionPane.showMessageDialog(null,"Stats are corrupt and can't be opened");
+            JOptionPane.showMessageDialog(null,"Error. Stats are corrupt and can't be opened");
         }
 
         catch(ClassNotFoundException e)

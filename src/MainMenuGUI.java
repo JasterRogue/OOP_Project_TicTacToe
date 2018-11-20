@@ -83,43 +83,19 @@ public class MainMenuGUI {
             if(e.getSource() == twoPlayerButton)
             {
                 //Sets the varaible based on what option is selected
-               // typeOfGame = "two";
-                optionSelected = true; //JB - will you need this?
-                setTypeOfGame("two"); //or this?
                 boardGUI.ticTacToeBoard.setVisible(true);
                 mainMenu.dispose();
-
                // mainMenu.setVisible(false);
-
-                //boardGUI.openStats();
-
-
                 
             }
 
-           /* if(e.getSource() == onePlayerButton)
-            {
-                //Sets the varaible based on what option is selected
-                //typeOfGame = "one";
-                setTypeOfGame("one"); 
-                System.out.print("Type of game is: " + getTypeOfGame()); 
-                optionSelected = true;
-            
-                mainMenu.dispose();
-              
-                 boardGUI = new GameBoardGUI();
-           
-            }*/
-
             if(e.getSource()== statsButton)
             {
-               // JOptionPane.showMessageDialog(null,player.toString(),"Stats",JOptionPane.INFORMATION_MESSAGE);
                 ArrayList<Player> playerDetails =  boardGUI.openStats();
 
-               JTextArea playerStats = new JTextArea();
+                JTextArea playerStats = new JTextArea();
                 playerStats.setText("Player Stats");
 
-                //
                 if(playerDetails.isEmpty())
                 {
                     JOptionPane.showMessageDialog(null,"No stats to display");

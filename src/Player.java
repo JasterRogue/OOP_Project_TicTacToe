@@ -6,30 +6,30 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
 
-    private String name;
+    private int gamesPlayed;
     private int numberOfWins;
     private int numberOfLosses;
     private int numberOfDraws;
 
    public Player()
     {
-        name = "Unknown";
+        gamesPlayed = 0;
         numberOfWins = 0;
         numberOfLosses = 0;
         numberOfDraws = 0;
     }
 
-    public Player(String name, int numberOfWins, int numberOfLosses, int numberOfDraws)
+    public Player(int gamesPlayed, int numberOfWins, int numberOfLosses, int numberOfDraws)
     {
-        this.name = name;
+        this.gamesPlayed = gamesPlayed;
         this.numberOfWins = numberOfWins;
         this.numberOfLosses = numberOfLosses;
         this.numberOfDraws = numberOfDraws;
     }
 
-    public void setName(String name)
+    public void setGamesPlayed(int gamesPlayed)
     {
-        this.name = name;
+        this.gamesPlayed = gamesPlayed;
     }
 
     public void setNumberOfWins(int numberOfWins)
@@ -47,9 +47,9 @@ public class Player implements Serializable {
         this.numberOfDraws = numberOfDraws;
     }
 
-    public String getName()
+    public int getGamesPlayed()
     {
-        return name;
+        return gamesPlayed;
     }
 
     public int getNumberOfWins()
@@ -69,7 +69,7 @@ public class Player implements Serializable {
 
     public String toString()
     {
-        return  "\n\nName: " + getName() +
+        return  "\n\nGames Played: " + getGamesPlayed() +
                 "\nWins: " + getNumberOfWins() +
                 "\nLosses: " + getNumberOfLosses() +
                 "\nDraws: " + getNumberOfDraws();
