@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class GameBoardGUI{
+public class GameBoardGUI implements CheckingWinners{
 
     JFrame ticTacToeBoard;
     ImageIcon ticTacToeIcon;
@@ -140,7 +140,9 @@ public class GameBoardGUI{
         
     } // end of GameBoardGUI constructor
 
-    /**Deals with button clicks during the game */
+    /**Deals with button clicks during the game and also whos turn it is.
+     * There is a variable called turns and depending on it's value it will set the
+     * variable printText to X or O.*/
     //JB - I made no changes to the code below at all. At the moment when I click on each tile
     //it renders an 'O' and should I click on the same tile twice I get a message dialog
     //indicating the tile has already been taken
@@ -179,10 +181,11 @@ public class GameBoardGUI{
             else {
                 printText = "X";
                 if(MainMenuGUI.getTypeOfGame().equals("one")) {
-                     cpuTurn();
+                     //cpuTurn();
                 }
                 playerTurn.setText("Player One Turn");
             }
+
 
             if(e.getSource()==tile0)
             {
@@ -359,14 +362,8 @@ public class GameBoardGUI{
         } // end of actionPerformed
     }//end of EventHandler class
 
-    /**When this method is called it plays the game , turns will continue until isGameFinished evaluates to true */
-    //JB Advise - you'll never call this method, the while loop within it was causing the crash we saw earlier in class
-    //as it was eating up the entire CPU time and so the GUI could never get a chance to render
-    //The player turns are taken care of through a simple counter variable here and the checkForWinner() can be called
-    //on its own after each turn is taken
-
     /**The cpu loops through the tile array checking for the first available tile and selects it */
-    public  void cpuTurn ()
+    /*public  void cpuTurn ()
     {
         int i;
         printText = "X";
@@ -432,8 +429,10 @@ public class GameBoardGUI{
                tileTaken[i] = true;
            }
 
+           System.out.print("\nCPU chose tile: " + i);
 
-    }//end of cpuTurn
+
+    }//end of cpuTurn */
 
     public  void checkForWinner()
     {
@@ -585,7 +584,6 @@ public class GameBoardGUI{
 
         if(isGameFinished)
         {
-            playerGameBoardGUI.setName(JOptionPane.showInputDialog("Player , enter your name"));
             if(winner.equals("playerOne"))
             {
                 playerGameBoardGUI.setNumberOfWins(playerGameBoardGUI.getNumberOfWins() + 1);
@@ -604,7 +602,7 @@ public class GameBoardGUI{
             ticTacToeBoard.dispose();
             MainMenuGUI mainMenuGUI = new MainMenuGUI();
 
-            mainMenuGUI.player.setName(playerGameBoardGUI.getName());
+            mainMenuGUI.player.setName(Game.playerName);
             mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
             mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
             mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
@@ -626,6 +624,9 @@ public class GameBoardGUI{
 
     public void saveStats(ArrayList<Player> playerDetails) throws IOException
     {
+
+
+
         try {
             File file = new File("playerStats.dat");
             FileOutputStream fos = new FileOutputStream(file);
@@ -649,13 +650,13 @@ public class GameBoardGUI{
             File file = new File("playerStats.dat");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-           ArrayList<Player> playerDetails = (ArrayList<Player>) ois.readObject();
+            ArrayList<Player> playerDetails = (ArrayList<Player>) ois.readObject();
             ois.close();
         }
 
         catch (IOException e)
         {
-            JOptionPane.showMessageDialog(null,"Could not open stats");
+            JOptionPane.showMessageDialog(null,"Stats are corrupt and can't be opened");
         }
 
         catch(ClassNotFoundException e)

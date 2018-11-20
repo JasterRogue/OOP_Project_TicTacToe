@@ -9,7 +9,7 @@ public class Player {
     private int numberOfLosses;
     private int numberOfDraws;
 
-    public Player()
+   public Player()
     {
         name = "Unknown";
         numberOfWins = 0;

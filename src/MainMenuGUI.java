@@ -10,7 +10,7 @@ public class MainMenuGUI {
 
     JFrame mainMenu = new JFrame();
     JButton twoPlayerButton = new JButton();
-    JButton onePlayerButton = new JButton();
+   // JButton onePlayerButton = new JButton();
     JButton statsButton = new JButton();
     JButton quitButton = new JButton();
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
@@ -19,6 +19,7 @@ public class MainMenuGUI {
     private static boolean optionSelected=false;
 
     JTextArea playerStats = new JTextArea();
+
 
     Player player = new Player();
     GameBoardGUI boardGUI;
@@ -37,33 +38,33 @@ public class MainMenuGUI {
         mainMenu.getContentPane().setBackground(Color.LIGHT_GRAY);
 
         //two player button setup
-        twoPlayerButton.setText("Two Player");
+        twoPlayerButton.setText("Play");
         twoPlayerButton.setSize(100,70);
         twoPlayerButton.setLocation(180,40);
         mainMenu.add(twoPlayerButton);
 
         //one player button setup
-        onePlayerButton.setText("One Player");
+       /* onePlayerButton.setText("One Player");
         onePlayerButton.setSize(100,70);
         onePlayerButton.setLocation(180,150);
-        mainMenu.add(onePlayerButton);
+        mainMenu.add(onePlayerButton);*/
 
         //stats button setup
         statsButton.setText("Stats");
         statsButton.setSize(100,70);
-        statsButton.setLocation(180,260);
+        statsButton.setLocation(180,180);
         mainMenu.add(statsButton);
 
         //quit button setup
         quitButton.setText("Quit");
         quitButton.setSize(100,70);
-        quitButton.setLocation(180,360);
+        quitButton.setLocation(180,320);
         mainMenu.add(quitButton);
 
         ButtonEventHandler buttonHandler = new ButtonEventHandler();
 
         twoPlayerButton.addActionListener(buttonHandler);
-        onePlayerButton.addActionListener(buttonHandler);
+      //  onePlayerButton.addActionListener(buttonHandler);
         statsButton.addActionListener(buttonHandler);
         quitButton.addActionListener(buttonHandler);
 
@@ -85,12 +86,13 @@ public class MainMenuGUI {
                 
                 mainMenu.dispose();
                // mainMenu.setVisible(false);
-              
+
+
                  boardGUI = new GameBoardGUI();
                 
             }
 
-            if(e.getSource() == onePlayerButton)
+           /* if(e.getSource() == onePlayerButton)
             {
                 //Sets the varaible based on what option is selected
                 //typeOfGame = "one";
@@ -102,7 +104,7 @@ public class MainMenuGUI {
               
                  boardGUI = new GameBoardGUI();
            
-            }
+            }*/
 
             if(e.getSource()== statsButton)
             {
@@ -147,12 +149,6 @@ public class MainMenuGUI {
     {
         return typeOfGame;
     }
-
-    public static boolean getOptionSelected()
-    {
-        return optionSelected;
-    }
-
 
 }
 
