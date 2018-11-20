@@ -2,7 +2,9 @@
 /*This class will be used for saving details of the player, name,wins
  * losses and draws */
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
 
     private String name;
     private int numberOfWins;
@@ -67,7 +69,7 @@ public class Player {
 
     public String toString()
     {
-        return "Name: " + getName() +
+        return  "\n\nName: " + getName() +
                 "\nWins: " + getNumberOfWins() +
                 "\nLosses: " + getNumberOfLosses() +
                 "\nDraws: " + getNumberOfDraws();

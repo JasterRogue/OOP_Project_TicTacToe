@@ -13,6 +13,10 @@ public class Game {
     static MediaPlayer mediaPlayer;
     static String audioFile= "bensound-summer.wav";
     static String playerName;
+
+
+
+    static Player player = new Player();
     
     //JB - removed some code here to clean it up a little, now this class kick-starts the GUI creation process
     //and starts the background music playing but this class is never revisited after this
@@ -20,12 +24,18 @@ public class Game {
     public static void main(String[] args)
     {
             JFXPanel fxPanel = new JFXPanel();
+
+
             
             playMusic(audioFile);
 
             MainMenuGUI mainMenu = new MainMenuGUI();
 
+            mainMenu.boardGUI.openStats();
+
             playerName = JOptionPane.showInputDialog("Player, please enter your name");
+             //player.setName(playerName);
+
     }
 
 

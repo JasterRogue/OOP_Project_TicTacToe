@@ -1,6 +1,7 @@
 //GameBoardGUI.java by Ryan Madigan
 /*This class is used to create the game board and all of its neccessary
-* components*/
+* components. It also deals with the running of the game and
+* checks when the game is finished*/
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class GameBoardGUI implements CheckingWinners{
+
+    File file = new File("playerStats.dat");
+    ArrayList<Player> playerDetails;
+
 
     JFrame ticTacToeBoard;
     ImageIcon ticTacToeIcon;
@@ -40,11 +45,10 @@ public class GameBoardGUI implements CheckingWinners{
      int turns = 0; //added by JB - use this to count the number of tiles that have been selected to date
                     //this can be used to determine whos turn it is
 
-     Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
-    ArrayList<Player> playerDetails = new ArrayList<>();
+    Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
+   // ArrayList<Player> playerDetails = new ArrayList<>();
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
 
-     String printText;
      boolean isGameFinished;
 
 
@@ -133,7 +137,9 @@ public class GameBoardGUI implements CheckingWinners{
 
         pane.add(playerTurn);
 
-        ticTacToeBoard.setVisible(true);
+        playerDetails = new ArrayList<>();
+
+        ticTacToeBoard.setVisible(false);
         
         //playGame(); //JB - it is the call to playGame() that is ultimately causing the game to crash after board GUI is called
         
@@ -434,6 +440,9 @@ public class GameBoardGUI implements CheckingWinners{
 
     }//end of cpuTurn */
 
+    /**This method goes through all the possible winning
+     * combinations for each player. There is also a condition
+     * if the game is a draw*/
     public  void checkForWinner()
     {
 
@@ -599,36 +608,31 @@ public class GameBoardGUI implements CheckingWinners{
             {
                 playerGameBoardGUI.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws() + 1);
             }
-            ticTacToeBoard.dispose();
+
+            ticTacToeBoard.setVisible(false);
+            //ticTacToeBoard.dispose();
             MainMenuGUI mainMenuGUI = new MainMenuGUI();
 
-            mainMenuGUI.player.setName(Game.playerName);
+            mainMenuGUI.player.setName(Game.player.getName());
             mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
             mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
             mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
-            ArrayList<Player> playerDetails = new ArrayList<>();
+
             playerDetails.add(new Player(playerGameBoardGUI.getName(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
 
-            try {
-                saveStats(playerDetails);
-            }
+            saveStats(playerDetails);
 
-            catch(IOException e)
-            {
-                JOptionPane.showMessageDialog(null,"Could not save stats");
 
-            }
         }
 
     }//end of checkForWinner
 
-    public void saveStats(ArrayList<Player> playerDetails) throws IOException
+    /**This method saves the players stats to a file */
+    public void saveStats(ArrayList<Player> playerDetails)
     {
 
-
-
         try {
-            File file = new File("playerStats.dat");
+            //File file = new File("playerStats.dat");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(playerDetails);
@@ -642,16 +646,30 @@ public class GameBoardGUI implements CheckingWinners{
 
         }
 
+        catch(IOException e)
+        {
+            JOptionPane.showMessageDialog(null,"Error. IO");
+
+        }
+
     }//end of saveStats()
 
-    public void openStats()
+    /**This opens the stats that are currently saved in the file */
+    public ArrayList<Player> openStats()
     {
+        ArrayList<Player> playerDetails = new ArrayList<Player>();
+
         try{
+
+            //JTextArea playerStats = new JTextArea();
+
             File file = new File("playerStats.dat");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Player> playerDetails = (ArrayList<Player>) ois.readObject();
+
+            playerDetails = (ArrayList<Player>) ois.readObject();
             ois.close();
+
         }
 
         catch (IOException e)
@@ -666,6 +684,7 @@ public class GameBoardGUI implements CheckingWinners{
         }
 
 
+        return playerDetails;
     }//end of openStats
 
 }

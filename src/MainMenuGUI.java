@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainMenuGUI {
 
@@ -61,13 +62,15 @@ public class MainMenuGUI {
         quitButton.setLocation(180,320);
         mainMenu.add(quitButton);
 
-        ButtonEventHandler buttonHandler = new ButtonEventHandler();
+        //ButtonEventHandler buttonHandler = new ButtonEventHandler();
 
-        twoPlayerButton.addActionListener(buttonHandler);
+        twoPlayerButton.addActionListener(new ButtonEventHandler());
       //  onePlayerButton.addActionListener(buttonHandler);
-        statsButton.addActionListener(buttonHandler);
-        quitButton.addActionListener(buttonHandler);
+        statsButton.addActionListener(new ButtonEventHandler());
+        quitButton.addActionListener(new ButtonEventHandler());
 
+
+        boardGUI = new GameBoardGUI();
 
         mainMenu.setVisible(true);
 
@@ -83,12 +86,14 @@ public class MainMenuGUI {
                // typeOfGame = "two";
                 optionSelected = true; //JB - will you need this?
                 setTypeOfGame("two"); //or this?
-                
+                boardGUI.ticTacToeBoard.setVisible(true);
                 mainMenu.dispose();
+
                // mainMenu.setVisible(false);
 
+                //boardGUI.openStats();
 
-                 boardGUI = new GameBoardGUI();
+
                 
             }
 
@@ -108,21 +113,23 @@ public class MainMenuGUI {
 
             if(e.getSource()== statsButton)
             {
-                JOptionPane.showMessageDialog(null,player.toString(),"Stats",JOptionPane.INFORMATION_MESSAGE);
-                boardGUI.openStats();
+               // JOptionPane.showMessageDialog(null,player.toString(),"Stats",JOptionPane.INFORMATION_MESSAGE);
+                ArrayList<Player> playerDetails =  boardGUI.openStats();
+
+               JTextArea playerStats = new JTextArea();
                 playerStats.setText("Player Stats");
 
                 //
-                if(boardGUI.playerDetails.isEmpty())
+                if(playerDetails.isEmpty())
                 {
                     JOptionPane.showMessageDialog(null,"No stats to display");
                 }
                 else
                     {
 
-                    for (int i = 0; i < boardGUI.playerDetails.size(); i++)
+                    for (int i = 0; i < playerDetails.size(); i++)
                     {
-                        playerStats.append(boardGUI.playerDetails.get(i).toString());
+                        playerStats.append(playerDetails.get(i).toString());
                     }
 
                     JOptionPane.showMessageDialog(null,playerStats);
@@ -149,6 +156,7 @@ public class MainMenuGUI {
     {
         return typeOfGame;
     }
+
 
 }
 
