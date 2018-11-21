@@ -108,7 +108,7 @@ public class MainMenuGUI {
                         playerStats.append(playerDetails.get(i).toString());
                     }
 
-                    JOptionPane.showMessageDialog(null,playerStats);
+                    JOptionPane.showMessageDialog(null,playerStats,"Stats",JOptionPane.INFORMATION_MESSAGE);
                 }
 
             }

@@ -540,12 +540,13 @@ public class GameBoardGUI implements CheckingWinners{
             //ticTacToeBoard.dispose();
             MainMenuGUI mainMenuGUI = new MainMenuGUI();
 
-            mainMenuGUI.player.setGamesPlayed(playerGameBoardGUI.getGamesPlayed());
-            mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
-            mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
-            mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
+            // mainMenuGUI.player.setGamesPlayed(playerGameBoardGUI.getGamesPlayed());
+            //mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
+            //mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
+            //mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
 
             playerDetails.add(new Player(playerGameBoardGUI.getGamesPlayed(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
+
 
             saveStats(playerDetails);
 
