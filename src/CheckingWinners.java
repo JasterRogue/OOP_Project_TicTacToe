@@ -1,4 +1,4 @@
 public interface CheckingWinners {
 
-    public void checkForWinner();
+     void checkForWinner();
 }

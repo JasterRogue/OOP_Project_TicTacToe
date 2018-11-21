@@ -11,18 +11,10 @@ public class MainMenuGUI {
 
     JFrame mainMenu = new JFrame();
     JButton twoPlayerButton = new JButton();
-   // JButton onePlayerButton = new JButton();
     JButton statsButton = new JButton();
     JButton quitButton = new JButton();
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
-    private static String typeOfGame;
-    private static boolean optionSelected=false;
-
-    JTextArea playerStats = new JTextArea();
-
-
-    Player player = new Player();
     GameBoardGUI boardGUI;
 
     /**Creates the main menu gui setting it up with jbuttons */
@@ -44,12 +36,6 @@ public class MainMenuGUI {
         twoPlayerButton.setLocation(180,40);
         mainMenu.add(twoPlayerButton);
 
-        //one player button setup
-       /* onePlayerButton.setText("One Player");
-        onePlayerButton.setSize(100,70);
-        onePlayerButton.setLocation(180,150);
-        mainMenu.add(onePlayerButton);*/
-
         //stats button setup
         statsButton.setText("Stats");
         statsButton.setSize(100,70);
@@ -62,12 +48,11 @@ public class MainMenuGUI {
         quitButton.setLocation(180,320);
         mainMenu.add(quitButton);
 
-        //ButtonEventHandler buttonHandler = new ButtonEventHandler();
+        ButtonEventHandler buttonHandler = new ButtonEventHandler();
 
-        twoPlayerButton.addActionListener(new ButtonEventHandler());
-      //  onePlayerButton.addActionListener(buttonHandler);
-        statsButton.addActionListener(new ButtonEventHandler());
-        quitButton.addActionListener(new ButtonEventHandler());
+        twoPlayerButton.addActionListener(buttonHandler);
+        statsButton.addActionListener(buttonHandler);
+        quitButton.addActionListener(buttonHandler);
 
 
         boardGUI = new GameBoardGUI();
@@ -82,11 +67,9 @@ public class MainMenuGUI {
         {
             if(e.getSource() == twoPlayerButton)
             {
-                //Sets the varaible based on what option is selected
                 boardGUI.ticTacToeBoard.setVisible(true);
                 mainMenu.dispose();
                // mainMenu.setVisible(false);
-                
             }
 
             if(e.getSource()== statsButton)
@@ -94,15 +77,14 @@ public class MainMenuGUI {
                 ArrayList<Player> playerDetails =  boardGUI.openStats();
 
                 JTextArea playerStats = new JTextArea();
-                playerStats.setText("Player Stats");
+                playerStats.setText("All Player Stats");
 
                 if(playerDetails.isEmpty())
                 {
                     JOptionPane.showMessageDialog(null,"No stats to display");
                 }
                 else
-                    {
-
+                {
                     for (int i = 0; i < playerDetails.size(); i++)
                     {
                         playerStats.append(playerDetails.get(i).toString());
@@ -122,17 +104,5 @@ public class MainMenuGUI {
 
     }//End of ButtonEventHandler class
 
-
-    public void setTypeOfGame(String typeOfGame)
-    {
-        this.typeOfGame = typeOfGame;
-    }
-
-    public static String getTypeOfGame()
-    {
-        return typeOfGame;
-    }
-
-
-}
+}//end of MainMenuGUI class
 

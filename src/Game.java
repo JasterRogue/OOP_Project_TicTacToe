@@ -11,7 +11,7 @@ import javafx.scene.media.Media;
 public class Game {
 
     static MediaPlayer mediaPlayer;
-    static String audioFile= "bensound-summer.wav";
+    static String audioFile= "bensound-summer.wav"; // I got this music from besnound
 
     public static void main(String[] args)
     {
@@ -22,10 +22,7 @@ public class Game {
             MainMenuGUI mainMenu = new MainMenuGUI();
 
             mainMenu.boardGUI.openStats();
-
     }
-
-
 
    public static void playMusic(String path) // I got the code for the playMusic() from John Brosnan
          {

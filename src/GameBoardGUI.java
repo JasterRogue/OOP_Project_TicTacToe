@@ -1,5 +1,5 @@
 //GameBoardGUI.java by Ryan Madigan
-/*This class is used to create the game board and all of its neccessary
+/*This class is used to create the game board and all of its necessary
 * components. It also deals with the running of the game and
 * checks when the game is finished*/
 
@@ -15,11 +15,9 @@ public class GameBoardGUI implements CheckingWinners{
     File file;
     ArrayList<Player> playerDetails;
 
-
     JFrame ticTacToeBoard;
     ImageIcon ticTacToeIcon;
 
-    Player playerGameBoardGUI = new Player();
     String winner; // This will store who is the winner
 
     //Each board tile is an individual button
@@ -37,20 +35,16 @@ public class GameBoardGUI implements CheckingWinners{
      //See if you can improve the efficiency of it by creating an array of size 9 to create and hold 
      //the 9 JButton objects using a for loop and also manipulate them in several ways like setting their 
      //size (which is common to all, setting their font and adding the action listener to them as well as
-     //adding each one to the pane - it will streamline your code a lot 
-
-
+     //adding each one to the pane - it will streamline your code a lot
 
      JLabel playerTurn;
      int turns = 0; //added by JB - use this to count the number of tiles that have been selected to date
                     //this can be used to determine whos turn it is
 
     Boolean tileTaken [] = new Boolean[]{false,false,false,false,false,false,false,false,false};
-   // ArrayList<Player> playerDetails = new ArrayList<>();
     Font buttonFont = new Font("Arial", Font.PLAIN,80); // This is really just for setting the text size
 
      boolean isGameFinished;
-
 
     /**Creates the Game board . Creates 9 buttons and sets there size, location and font*/
     public GameBoardGUI()
@@ -518,40 +512,35 @@ public class GameBoardGUI implements CheckingWinners{
 
         if(isGameFinished)
         {
-            playerGameBoardGUI.setGamesPlayed(playerGameBoardGUI.getGamesPlayed() + 1);
+            ArrayList<Player> allPlayers = openStats();
+
+            Player p = allPlayers.get(0);
+
+            p.setGamesPlayed(p.getGamesPlayed()+1);
+
 
             if(winner.equals("playerOne"))
             {
-                playerGameBoardGUI.setNumberOfWins(playerGameBoardGUI.getNumberOfWins() + 1);
+                p.setNumberOfWins((p.getNumberOfWins() +1));
 
             }
 
             else if(winner.equals("playerTwo"))
             {
-                playerGameBoardGUI.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses() + 1);
+                p.setNumberOfLosses((p.getNumberOfLosses() +1));
             }
 
             else
             {
-                playerGameBoardGUI.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws() + 1);
+                p.setNumberOfDraws((p.getNumberOfDraws() +1));
             }
 
             ticTacToeBoard.setVisible(false);
             //ticTacToeBoard.dispose();
             MainMenuGUI mainMenuGUI = new MainMenuGUI();
 
-            // mainMenuGUI.player.setGamesPlayed(playerGameBoardGUI.getGamesPlayed());
-            //mainMenuGUI.player.setNumberOfWins(playerGameBoardGUI.getNumberOfWins());
-            //mainMenuGUI.player.setNumberOfDraws(playerGameBoardGUI.getNumberOfDraws());
-            //mainMenuGUI.player.setNumberOfLosses(playerGameBoardGUI.getNumberOfLosses());
-
-            playerDetails.add(new Player(playerGameBoardGUI.getGamesPlayed(), playerGameBoardGUI.getNumberOfWins(), playerGameBoardGUI.getNumberOfLosses(), playerGameBoardGUI.getNumberOfDraws()));
-
-
-            saveStats(playerDetails);
-
-
-        }
+            saveStats(allPlayers);
+        }//end of if(gameFinished)
 
     }//end of checkForWinner
 
@@ -563,7 +552,7 @@ public class GameBoardGUI implements CheckingWinners{
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(playerDetails);
-            JOptionPane.showMessageDialog(null, "Player details saved successfully");
+           // JOptionPane.showMessageDialog(null, "Player details saved successfully");
             oos.close();
         }
 
@@ -575,7 +564,7 @@ public class GameBoardGUI implements CheckingWinners{
 
         catch(IOException e)
         {
-            JOptionPane.showMessageDialog(null,"Error. IO");
+            JOptionPane.showMessageDialog(null,"Error. IOException occurred");
 
         }
 
@@ -588,12 +577,9 @@ public class GameBoardGUI implements CheckingWinners{
 
         try{
 
-            //JTextArea playerStats = new JTextArea();
-
             File file = new File("playerStats.dat");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-
             playerDetails = (ArrayList<Player>) ois.readObject();
             ois.close();
 

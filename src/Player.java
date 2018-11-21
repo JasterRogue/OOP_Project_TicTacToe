@@ -1,5 +1,5 @@
 //Player.java by Ryan Madigan
-/*This class will be used for saving details of the player, name,wins
+/*This class will be used for creating the player components, games played,wins
  * losses and draws */
 
 import java.io.Serializable;
