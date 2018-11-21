@@ -3,6 +3,10 @@
 * components. It also deals with the running of the game and
 * checks when the game is finished*/
 
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +21,10 @@ public class GameBoardGUI implements CheckingWinners{
 
     JFrame ticTacToeBoard;
     ImageIcon ticTacToeIcon;
+
+    MediaPlayer mediaPlayer;
+    String buttonPushFile="TinyButtonPush.mp3";
+    JFXPanel fxPanel = new JFXPanel();
 
     String winner; // This will store who is the winner
 
@@ -192,6 +200,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                     turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile0.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -211,6 +220,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile1.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -230,6 +240,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile2.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -249,6 +260,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile3.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -268,6 +280,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile4.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -287,6 +300,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile5.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -306,6 +320,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile6.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -325,6 +340,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile7.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
                 }
@@ -344,6 +360,7 @@ public class GameBoardGUI implements CheckingWinners{
                 {
                 	turns++; //added by JB to keep track of number of turns
                     tileTaken[tileNum] = true;
+                    buttonPushSound();
                     tile8.setText(printText);
                     checkForWinner(); //added by JB to check for winner after each turn is taken
 
@@ -599,5 +616,23 @@ public class GameBoardGUI implements CheckingWinners{
 
         return playerDetails;
     }//end of openStats
+
+    public void buttonPushSound()
+    {
+        Media audioClip = new Media(new File(buttonPushFile).toURI().toString());
+
+        mediaPlayer = new MediaPlayer(audioClip);
+
+        try
+        {
+            mediaPlayer.play();
+        }
+
+        catch (Exception e)
+        {
+            System.out.print("Sound effect cannot play");
+        }
+
+    }
 
 }

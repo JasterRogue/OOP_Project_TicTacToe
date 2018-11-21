@@ -1,10 +1,15 @@
 //MainMenuGUI.java by Ryan Madigan
 /*This class creates the GUI for the main menu.*/
 
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainMenuGUI {
@@ -16,6 +21,9 @@ public class MainMenuGUI {
     ImageIcon ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
     GameBoardGUI boardGUI;
+    MediaPlayer mediaPlayer;
+    String buttonPushFile="TinyButtonPush.mp3";
+    JFXPanel fxPanel = new JFXPanel();
 
     /**Creates the main menu gui setting it up with jbuttons */
 
@@ -69,12 +77,14 @@ public class MainMenuGUI {
             {
                 boardGUI.ticTacToeBoard.setVisible(true);
                 mainMenu.dispose();
+                buttonPushSound();
                // mainMenu.setVisible(false);
             }
 
             if(e.getSource()== statsButton)
             {
                 ArrayList<Player> playerDetails =  boardGUI.openStats();
+                buttonPushSound();
 
                 JTextArea playerStats = new JTextArea();
                 playerStats.setText("All Player Stats");
@@ -98,11 +108,30 @@ public class MainMenuGUI {
             if(e.getSource()== quitButton)
             {
                 JOptionPane.showMessageDialog(null,"Thanks for playing","Close Application",JOptionPane.INFORMATION_MESSAGE);
+                buttonPushSound();
                 System.exit(0);
             }
         } // end of actionPerformed
 
     }//End of ButtonEventHandler class
+
+    public void buttonPushSound()
+    {
+        Media audioClip = new Media(new File(buttonPushFile).toURI().toString());
+
+        mediaPlayer = new MediaPlayer(audioClip);
+
+        try
+        {
+            mediaPlayer.play();
+        }
+
+        catch (Exception e)
+        {
+            System.out.print("Sound effect cannot play");
+        }
+
+    }
 
 }//end of MainMenuGUI class
 
