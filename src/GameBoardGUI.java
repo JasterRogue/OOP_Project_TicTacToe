@@ -143,10 +143,7 @@ public class GameBoardGUI implements CheckingWinners{
         file = new File("playerStats.dat");
 
         ticTacToeBoard.setVisible(false);
-        
-        //playGame(); //JB - it is the call to playGame() that is ultimately causing the game to crash after board GUI is called
-        
-        
+
     } // end of GameBoardGUI constructor
 
     /**Deals with button clicks during the game and also whos turn it is.
@@ -617,6 +614,7 @@ public class GameBoardGUI implements CheckingWinners{
         return playerDetails;
     }//end of openStats
 
+    /**This plays a button push sound every time a tile is selected */
     public void buttonPushSound()
     {
         Media audioClip = new Media(new File(buttonPushFile).toURI().toString());
