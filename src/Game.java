@@ -11,7 +11,7 @@ import javafx.scene.media.Media;
 public class Game {
 
     static MediaPlayer mediaPlayer;
-    static String audioFile= "bensound-summer.wav"; // I got this music from besnound
+    static String audioFile= "bensound-summer.wav"; // I got this music from bensound.com
 
     public static void main(String[] args)
     {

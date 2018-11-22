@@ -22,7 +22,7 @@ public class MainMenuGUI {
 
     GameBoardGUI boardGUI;
     MediaPlayer mediaPlayer;
-    String buttonPushFile="TinyButtonPush.mp3";
+    String buttonPushFile="TinyButtonPush.mp3"; //I got this from soundbible.com
     JFXPanel fxPanel = new JFXPanel();
 
     /**Creates the main menu gui setting it up with jbuttons */
@@ -115,7 +115,7 @@ public class MainMenuGUI {
 
     }//End of ButtonEventHandler class
 
-    public void buttonPushSound()
+    public void buttonPushSound()// I got the code for this from John Brosnan
     {
         Media audioClip = new Media(new File(buttonPushFile).toURI().toString());
 

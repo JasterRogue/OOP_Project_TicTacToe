@@ -23,7 +23,7 @@ public class GameBoardGUI implements CheckingWinners{
     ImageIcon ticTacToeIcon;
 
     MediaPlayer mediaPlayer;
-    String buttonPushFile="TinyButtonPush.mp3";
+    String buttonPushFile="TinyButtonPush.mp3";//I got this from soundbible.com
     JFXPanel fxPanel = new JFXPanel();
 
     String winner; // This will store who is the winner
@@ -38,12 +38,6 @@ public class GameBoardGUI implements CheckingWinners{
      JButton tile6 = new JButton();
      JButton tile7 = new JButton();
      JButton tile8 = new JButton();
-     
-     //JB advise - you have an awful lot of repeated code here in terms of the JButtons
-     //See if you can improve the efficiency of it by creating an array of size 9 to create and hold 
-     //the 9 JButton objects using a for loop and also manipulate them in several ways like setting their 
-     //size (which is common to all, setting their font and adding the action listener to them as well as
-     //adding each one to the pane - it will streamline your code a lot
 
      JLabel playerTurn;
      int turns = 0; //added by JB - use this to count the number of tiles that have been selected to date
@@ -61,7 +55,7 @@ public class GameBoardGUI implements CheckingWinners{
         ticTacToeIcon = new ImageIcon("tictactoeicon.PNG");
 
         ticTacToeBoard.setTitle("Tic Tac Toe");
-        ticTacToeBoard.setSize(608,650);
+        ticTacToeBoard.setSize(608,660);
         ticTacToeBoard.setLocation(350,50);
         ticTacToeBoard.setIconImage(ticTacToeIcon.getImage());
         ticTacToeBoard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,9 +143,6 @@ public class GameBoardGUI implements CheckingWinners{
     /**Deals with button clicks during the game and also whos turn it is.
      * There is a variable called turns and depending on it's value it will set the
      * variable printText to X or O.*/
-    //JB - I made no changes to the code below at all. At the moment when I click on each tile
-    //it renders an 'O' and should I click on the same tile twice I get a message dialog
-    //indicating the tile has already been taken
     
    private class EventHandler implements ActionListener
     {
@@ -159,23 +150,6 @@ public class GameBoardGUI implements CheckingWinners{
         {
             int tileNum;
             String printText;
-            
-            //JB advise - if you had the 9 JButtons all in an array then you could write the code below in a much
-            //more efficient manner, as it is all common for each tile in the game e.g. if the array was declared
-            //as follows
-            //
-            //  Tile[] tiles = new Tile[9];
-            //
-            //then you could loop over the tiles in the array using a for loop and test as follows each time
-            //
-            //if(e.getSource()==tiles[i] && tileTaken[tileNum] == false)
-            //{
-            //	    tileTaken[i] = true; //this will be a parallel array for the tiles array
-            //      tiles[i].setText(printText);
-            //}
-            //else
-            //   .......
-
 
             if(turns%2==0) //it player 1's turn
             {
@@ -378,7 +352,6 @@ public class GameBoardGUI implements CheckingWinners{
      * if the game is a draw*/
     public  void checkForWinner()
     {
-
         //JB - created else-if here for efficiency and deal with "no winner" scenario
         
         //Horizontal wins for X 
@@ -532,7 +505,6 @@ public class GameBoardGUI implements CheckingWinners{
 
             p.setGamesPlayed(p.getGamesPlayed()+1);
 
-
             if(winner.equals("playerOne"))
             {
                 p.setNumberOfWins((p.getNumberOfWins() +1));
@@ -550,7 +522,6 @@ public class GameBoardGUI implements CheckingWinners{
             }
 
             ticTacToeBoard.setVisible(false);
-            //ticTacToeBoard.dispose();
             MainMenuGUI mainMenuGUI = new MainMenuGUI();
 
             saveStats(allPlayers);
@@ -615,7 +586,7 @@ public class GameBoardGUI implements CheckingWinners{
     }//end of openStats
 
     /**This plays a button push sound every time a tile is selected */
-    public void buttonPushSound()
+    public void buttonPushSound()// I got the code for this from John Brosnan
     {
         Media audioClip = new Media(new File(buttonPushFile).toURI().toString());
 
